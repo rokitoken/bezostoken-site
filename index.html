@@ -809,11 +809,11 @@
     /************************************************************
      * ✅ EDIT THESE VALUES
      ************************************************************/
-    const CONTRACT_ADDRESS = "PASTE_YOUR_CONTRACT_ADDRESS_HERE";
+    const CONTRACT_ADDRESS = "0xc924a01D48c5c71cFf9977f04df1f8513939D884";
     const ETHERSCAN_URL = "https://etherscan.io/address/" + CONTRACT_ADDRESS;
     const UNISWAP_URL   = "https://app.uniswap.org/swap?outputCurrency=" + CONTRACT_ADDRESS;
 
-    const DEXSCREENER_URL = "https://dexscreener.com/ethereum/PASTE_PAIR_OR_TOKEN_HERE";
+    const DEXSCREENER_URL = "https://dexscreener.com/ethereum/0xc924a01D48c5c71cFf9977f04df1f8513939D884";
     const COINMARKETCAP_URL = ""; // set when listed
     const DEXSCREENER_EMBED_URL = ""; // optional
 
@@ -897,7 +897,7 @@
      ************************************************************/
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    if (CONTRACT_ADDRESS.includes("PASTE_YOUR")){
+    if (CONTRACT_ADDRESS.includes("0xc924a01D48c5c71cFf9977f04df1f8513939D884")){
       contractDisplay.textContent = (document.documentElement.lang === "bg")
         ? "0xc924a01D48c5c71cFf9977f04df1f8513939D884"
         : "0xc924a01D48c5c71cFf9977f04df1f8513939D884";
@@ -1053,4 +1053,5 @@
   </script>
 </body>
 </html>
+
 
