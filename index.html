@@ -1,38 +1,69 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BEZOS (BZS) — ERC-20 on Ethereum</title>
-  <meta name="description" content="BEZOS (BZS) is an ERC-20 token on Ethereum with fixed supply, verifiable code, and a long-term vision focused on trust and community." />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
 
+  <!-- Canonical (adjust if needed) -->
+  <link rel="canonical" href="https://bezostoken.info/" />
+
+  <!-- Basic SEO (will be updated dynamically by JS per language) -->
+  <title>BEZOS (BZS) — ERC-20 on Ethereum</title>
+  <meta name="description" content="BEZOS (BZS) is an ERC-20 token on Ethereum with fixed supply, verifiable contract, and a long-term trust-first approach." />
+
+  <!-- Icons -->
   <link rel="icon" type="image/png" href="favicon.png" />
 
+  <!-- OpenGraph / Twitter (dynamic text will be updated too) -->
+  <meta property="og:type" content="website" />
   <meta property="og:title" content="BEZOS (BZS)" />
   <meta property="og:description" content="ERC-20 token on Ethereum. Fixed supply. Verified contract. Long-term vision." />
-  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bezostoken.info/" />
+  <!-- Optional: add og.png in repo root -->
+  <!-- <meta property="og:image" content="https://bezostoken.info/og.png" /> -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BEZOS (BZS)" />
+  <meta name="twitter:description" content="ERC-20 token on Ethereum. Fixed supply. Verified contract. Long-term vision." />
+
+  <!-- hreflang hints -->
+  <link rel="alternate" href="https://bezostoken.info/" hreflang="en" />
+  <link rel="alternate" href="https://bezostoken.info/" hreflang="ru" />
+  <link rel="alternate" href="https://bezostoken.info/" hreflang="de" />
+  <link rel="alternate" href="https://bezostoken.info/" hreflang="es" />
+  <link rel="alternate" href="https://bezostoken.info/" hreflang="x-default" />
 
   <style>
     :root{
       --bg0:#06070a;
       --bg1:#0b1020;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.09);
-      --line: rgba(255,255,255,.12);
-      --txt: #eef3ff;
-      --muted: rgba(238,243,255,.72);
-      --muted2: rgba(238,243,255,.55);
+      --txt:#eef3ff;
+      --muted:rgba(238,243,255,.72);
+      --muted2:rgba(238,243,255,.56);
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.09);
+      --line:rgba(255,255,255,.12);
+
       --a:#00D4FF;
       --b:#7C3AED;
       --c:#22C55E;
       --w:#F59E0B;
-      --shadow: 0 24px 80px rgba(0,0,0,.55);
-      --radius: 20px;
-      --radius2: 16px;
-      --max: 1120px;
+      --r:#EF4444;
+
+      --shadow:0 24px 80px rgba(0,0,0,.55);
+      --shadow2:0 14px 50px rgba(0,0,0,.32);
+      --radius:20px;
+      --radius2:16px;
+      --max:1140px;
+
+      --focus: 0 0 0 3px rgba(0,212,255,.25);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
       color:var(--txt);
@@ -40,80 +71,133 @@
       background:
         radial-gradient(1200px 700px at 20% 10%, rgba(124,58,237,.28), transparent 55%),
         radial-gradient(900px 600px at 80% 20%, rgba(0,212,255,.22), transparent 55%),
-        radial-gradient(900px 700px at 50% 100%, rgba(34,197,94,.12), transparent 60%),
+        radial-gradient(900px 700px at 50% 100%, rgba(34,197,94,.10), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    #particles{ position:fixed; inset:0; z-index:-2; opacity:.7; pointer-events:none; }
+    /* Canvas particles (auto disabled on reduced motion) */
+    #particles{
+      position:fixed; inset:0;
+      z-index:-2;
+      opacity:.65;
+      pointer-events:none;
+    }
+
+    /* Subtle grid */
     .grid{
-      position:fixed; inset:-2px; z-index:-1;
+      position:fixed; inset:-2px;
+      z-index:-1;
       background-image:
         linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
       background-size: 52px 52px;
-      mask-image: radial-gradient(closest-side at 50% 15%, rgba(0,0,0,.90), transparent);
-      opacity:.22; pointer-events:none;
+      mask-image: radial-gradient(closest-side at 50% 15%, rgba(0,0,0,.92), transparent);
+      opacity:.22;
+      pointer-events:none;
       animation: drift 16s ease-in-out infinite;
     }
     @keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
-    .wrap{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; padding: 22px 0 80px; }
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .grid{ animation:none; }
+      html{ scroll-behavior:auto !important; }
+    }
+    html{ scroll-behavior:smooth; }
 
-    .nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding: 8px 0 18px; }
+    a{ color:inherit; }
+    a:focus-visible, button:focus-visible, input:focus-visible{
+      outline:none;
+      box-shadow: var(--focus);
+      border-radius: 12px;
+    }
+
+    .wrap{
+      width:min(var(--max), calc(100% - 40px));
+      margin:0 auto;
+      padding: 18px 0 72px;
+    }
+
+    /* Sticky header */
+    .top{
+      position:sticky;
+      top: 0;
+      z-index: 50;
+      padding: 10px 0 14px;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(6,7,10,.85), rgba(6,7,10,.15));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      width:min(var(--max), calc(100% - 40px));
+      margin:0 auto;
+    }
     .brand{ display:flex; align-items:center; gap:12px; }
     .brandLogo{
       width:44px; height:44px; border-radius:14px;
-      background: radial-gradient(circle at 25% 25%, rgba(255,255,255,.25), transparent 55%),
-                  linear-gradient(135deg, rgba(0,212,255,.95), rgba(124,58,237,.95));
+      background:
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,.25), transparent 55%),
+        linear-gradient(135deg, rgba(0,212,255,.95), rgba(124,58,237,.95));
       border: 1px solid rgba(255,255,255,.14);
       box-shadow: 0 12px 30px rgba(0,212,255,.14);
+      flex:0 0 auto;
     }
     .brandTitle{ display:flex; flex-direction:column; gap:4px; }
     .brandTitle .t{
-      font-size: 13px; letter-spacing:.18em; text-transform:uppercase;
-      color: rgba(238,243,255,.88); margin:0;
+      margin:0;
+      font-size: 13px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color: rgba(238,243,255,.90);
+      line-height: 1.1;
     }
     .pill{
       display:inline-flex; align-items:center; gap:8px;
-      padding: 8px 12px; border-radius:999px;
+      padding: 7px 10px;
+      border-radius:999px;
       background: rgba(255,255,255,.04);
       border: 1px solid rgba(255,255,255,.12);
       color: rgba(238,243,255,.72);
       font-size: 12px;
       backdrop-filter: blur(10px);
+      width: fit-content;
     }
     .dot{width:7px;height:7px;border-radius:999px;background:var(--c);box-shadow:0 0 18px rgba(34,197,94,.55)}
-    .navBtns{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
 
+    .navRight{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
     .btn{
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       color: var(--txt);
-      padding: 10px 14px;
+      padding: 10px 12px;
       border-radius: 14px;
       text-decoration:none;
       display:inline-flex; align-items:center; gap:10px;
-      font-weight: 650;
+      font-weight: 700;
       cursor:pointer;
       user-select:none;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
       backdrop-filter: blur(10px);
       white-space:nowrap;
     }
-    .btn:hover{transform:translateY(-1px); border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.10)}
+    .btn:hover{ transform:translateY(-1px); border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.10); }
     .btnPrimary{
       border-color: rgba(0,212,255,.28);
       background: linear-gradient(135deg, rgba(0,212,255,.22), rgba(124,58,237,.18));
     }
-    .btnPrimary:hover{border-color: rgba(0,212,255,.42)}
     .btnWarn{
       border-color: rgba(245,158,11,.28);
       background: linear-gradient(135deg, rgba(245,158,11,.18), rgba(0,0,0,0));
     }
     .btnGhost{ background: transparent; border-color: rgba(255,255,255,.12); }
+    .btnSmall{ padding: 8px 10px; border-radius: 12px; font-size: 13px; }
 
-    /* language toggle */
+    /* Language toggle */
     .langToggle{
       display:inline-flex;
       border:1px solid rgba(255,255,255,.14);
@@ -122,12 +206,11 @@
       overflow:hidden;
     }
     .langToggle button{
-      border:0;
-      background: transparent;
+      border:0; background: transparent;
       color: rgba(238,243,255,.75);
-      padding: 10px 12px;
+      padding: 10px 10px;
       cursor:pointer;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing:.04em;
     }
     .langToggle button.active{
@@ -135,8 +218,9 @@
       background: rgba(255,255,255,.10);
     }
 
+    /* Hero */
     .hero{
-      margin-top: 10px;
+      margin-top: 14px;
       border: 1px solid rgba(255,255,255,.10);
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       border-radius: var(--radius);
@@ -155,15 +239,15 @@
     }
     .heroInner{
       position:relative;
-      padding: 40px 34px 28px;
+      padding: 38px 34px 26px;
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.2fr .8fr;
       gap: 18px;
     }
-    @media (max-width: 920px){
-      .heroInner{ grid-template-columns:1fr; padding: 30px 18px 22px; }
-      .nav{flex-direction:column; align-items:flex-start}
-      .navBtns{justify-content:flex-start}
+
+    @media (max-width: 980px){
+      .heroInner{ grid-template-columns:1fr; padding: 28px 18px 22px; }
+      .nav{ width: calc(100% - 40px); }
     }
 
     .kicker{
@@ -182,11 +266,23 @@
       background: linear-gradient(135deg, var(--a), var(--b));
       box-shadow: 0 0 16px rgba(0,212,255,.35);
     }
-    .title{ margin: 14px 0 10px; font-size: clamp(36px, 4.2vw, 56px); line-height: 1.02; letter-spacing: -0.02em; }
-    .subtitle{ margin: 0 0 16px; color: var(--muted); font-size: 16px; line-height: 1.55; max-width: 66ch; }
+    .title{
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+    .subtitle{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      max-width: 70ch;
+    }
 
     .heroLogo{
-      width: 118px; height:auto;
+      width: 120px;
+      height:auto;
       filter: drop-shadow(0 0 18px rgba(0,212,255,.15));
       animation: glow 2.8s ease-in-out infinite alternate;
     }
@@ -195,14 +291,44 @@
       to{ filter: drop-shadow(0 0 22px rgba(124,58,237,.22)); }
     }
 
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    @media (max-width: 980px){ .grid3{ grid-template-columns:1fr; } }
+    .stat{
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      text-align:left;
+      box-shadow: 0 10px 40px rgba(0,0,0,.12);
+    }
+    .stat .k{
+      color: var(--muted2);
+      font-size: 12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .stat .v{ margin-top: 10px; font-size: 18px; font-weight: 900; }
+    .stat .s{ margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+
     .card{
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(10,12,18,.42);
       border-radius: var(--radius2);
       padding: 18px;
       backdrop-filter: blur(12px);
+      box-shadow: var(--shadow2);
     }
-    .label{ color: var(--muted2); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+    .label{
+      color: var(--muted2);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
     .mono{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 13px;
@@ -217,30 +343,16 @@
       max-width: 100%;
     }
 
-    .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
-    @media (max-width: 920px){ .grid3{ grid-template-columns:1fr; } }
-    .stat{
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-      text-align:left;
-    }
-    .stat .k{ color: var(--muted2); font-size: 12px; letter-spacing:.14em; text-transform:uppercase; }
-    .stat .v{ margin-top: 10px; font-size: 18px; font-weight: 780; }
-
-    .section{ margin-top: 18px; display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width: 920px){ .section{ grid-template-columns:1fr; } }
-
-    .list{margin:10px 0 0; padding:0; list-style:none}
+    .list{ margin:10px 0 0; padding:0; list-style:none; }
     .list li{
       display:flex; gap:10px; align-items:flex-start;
       padding: 10px 0;
       border-top: 1px dashed rgba(255,255,255,.10);
       color: var(--muted);
       line-height: 1.45;
+      font-size: 14px;
     }
-    .list li:first-child{border-top:none; padding-top: 2px;}
+    .list li:first-child{ border-top:none; padding-top: 2px; }
     .check{
       width: 18px; height: 18px;
       border-radius: 6px;
@@ -251,6 +363,7 @@
       flex: 0 0 auto;
     }
 
+    /* Panels */
     .panel{
       margin-top: 18px;
       border: 1px solid rgba(255,255,255,.10);
@@ -264,14 +377,19 @@
       display:flex; align-items:center; justify-content:space-between; gap:12px;
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
-    .panelHead h3{margin:0; font-size: 16px; letter-spacing:.02em;}
-    .panelBody{padding: 16px 18px 18px;}
-    .cols{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-    @media (max-width: 920px){ .cols{ grid-template-columns:1fr; } }
+    .panelHead h2, .panelHead h3{ margin:0; font-size: 16px; letter-spacing:.02em; }
+    .panelBody{ padding: 16px 18px 18px; }
+    .cols{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 980px){ .cols{ grid-template-columns:1fr; } }
 
-    .small{color: var(--muted2); font-size: 12px; line-height: 1.45;}
-    .muted{color: var(--muted);}
+    .small{ color: var(--muted2); font-size: 12px; line-height: 1.45; }
+    .muted{ color: var(--muted); }
 
+    /* Countdown */
     .count{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
     .countBox{
       min-width: 92px;
@@ -281,19 +399,37 @@
       background: rgba(255,255,255,.04);
       text-align:center;
     }
-    .countBox .n{font-weight:900; font-size: 20px;}
-    .countBox .l{color: var(--muted2); font-size: 11px; letter-spacing:.12em; text-transform:uppercase; margin-top:4px;}
+    .countBox .n{ font-weight: 1000; font-size: 20px; }
+    .countBox .l{
+      color: var(--muted2);
+      font-size: 11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-top:4px;
+    }
 
+    /* Embed */
+    .embed{
+      width:100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+    }
+    .embed iframe{ width:100%; height:100%; border:0; }
+
+    /* Modal */
     .modalBack{
       position: fixed; inset:0;
       background: rgba(0,0,0,.55);
       display:none;
       align-items:center; justify-content:center;
       padding: 20px;
-      z-index: 60;
+      z-index: 80;
     }
     .modal{
-      width: min(860px, 100%);
+      width: min(900px, 100%);
       background: rgba(10,12,18,.92);
       border: 1px solid rgba(255,255,255,.14);
       border-radius: 18px;
@@ -305,8 +441,9 @@
       display:flex; justify-content:space-between; align-items:center;
       padding: 14px 16px;
       border-bottom: 1px solid rgba(255,255,255,.10);
+      gap: 10px;
     }
-    .modalHead strong{letter-spacing:.06em}
+    .modalHead strong{ letter-spacing:.06em; }
     .xbtn{
       border:1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.06);
@@ -323,19 +460,15 @@
       max-height: 70vh;
       overflow:auto;
     }
-    .modalBody h4{color: var(--txt); margin: 14px 0 8px;}
-    .modalBody code{background: rgba(255,255,255,.06); padding: 2px 6px; border-radius: 8px; border:1px solid rgba(255,255,255,.10)}
-
-    .embed{
-      width:100%;
-      aspect-ratio: 16 / 9;
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 16px;
-      overflow:hidden;
-      background: rgba(255,255,255,.03);
+    .modalBody h4{ color: var(--txt); margin: 14px 0 8px; }
+    .modalBody code{
+      background: rgba(255,255,255,.06);
+      padding: 2px 6px;
+      border-radius: 8px;
+      border:1px solid rgba(255,255,255,.10);
     }
-    .embed iframe{width:100%; height:100%; border:0;}
 
+    /* Toast */
     .toast{
       position: fixed;
       left: 50%;
@@ -348,13 +481,16 @@
       color: rgba(238,243,255,.92);
       font-size: 13px;
       display:none;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow2);
       backdrop-filter: blur(12px);
-      z-index: 70;
+      z-index: 90;
+      max-width: calc(100% - 40px);
+      text-align:center;
     }
-    .toast.show{display:block; animation: pop .18s ease;}
-    @keyframes pop{from{transform:translateX(-50%) translateY(6px);opacity:.0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+    .toast.show{ display:block; animation: pop .18s ease; }
+    @keyframes pop{ from{ transform:translateX(-50%) translateY(6px); opacity:0; } to{ transform:translateX(-50%) translateY(0); opacity:1; } }
 
+    /* Footer */
     .footer{
       margin-top: 18px;
       padding: 18px 2px 0;
@@ -364,8 +500,14 @@
       gap: 10px;
       flex-wrap:wrap;
     }
-    .links a{ color: rgba(238,243,255,.75); text-decoration:none; margin-right: 12px; }
+    .links a{
+      color: rgba(238,243,255,.75);
+      text-decoration:none;
+      margin-right: 12px;
+    }
     .links a:hover{ text-decoration:underline; }
+
+    /* Helpers */
     .badge{
       display:inline-flex; gap:8px; align-items:center;
       padding: 6px 10px;
@@ -374,28 +516,60 @@
       background: rgba(255,255,255,.04);
       color: rgba(238,243,255,.72);
       font-size: 12px;
+      width: fit-content;
+    }
+    .divider{ height:1px; background: rgba(255,255,255,.08); margin: 12px 0; }
+
+    /* Back-to-top */
+    .toTop{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 85;
+      display:none;
     }
 
-    /* i18n */
+    /* Print */
+    @media print{
+      #particles,.grid,.toTop,.top{ display:none !important; }
+      body{ background:#fff !important; color:#000 !important; }
+      .card,.panel,.hero{ box-shadow:none !important; }
+      a{ color:#000 !important; text-decoration:underline; }
+    }
+
+    /* i18n display logic */
     [data-i18n]{ display:none; }
     html[lang="en"] [data-i18n="en"]{ display:inline; }
     html[lang="ru"] [data-i18n="ru"]{ display:inline; }
     html[lang="de"] [data-i18n="de"]{ display:inline; }
     html[lang="es"] [data-i18n="es"]{ display:inline; }
   </style>
+
+  <!-- JSON-LD (will be updated dynamically) -->
+  <script type="application/ld+json" id="jsonld">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "BEZOS (BZS)",
+    "url": "https://bezostoken.info/",
+    "description": "BEZOS (BZS) is an ERC-20 token on Ethereum with a trust-first approach."
+  }
+  </script>
 </head>
 
 <body>
-  <canvas id="particles"></canvas>
-  <div class="grid"></div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="grid" aria-hidden="true"></div>
 
-  <div class="wrap">
+  <!-- Sticky top bar -->
+  <div class="top">
     <div class="nav">
       <div class="brand">
         <div class="brandLogo" aria-hidden="true"></div>
         <div class="brandTitle">
           <p class="t">BEZOS / BZS</p>
-          <div class="pill"><span class="dot"></span>
+          <div class="pill" aria-label="Network status">
+            <span class="dot" aria-hidden="true"></span>
             <span data-i18n="en">Ethereum Mainnet • Verified contract</span>
             <span data-i18n="ru">Ethereum Mainnet • Верифицированный контракт</span>
             <span data-i18n="de">Ethereum Mainnet • Verifizierter Vertrag</span>
@@ -404,7 +578,7 @@
         </div>
       </div>
 
-      <div class="navBtns">
+      <div class="navRight">
         <div class="langToggle" aria-label="Language toggle">
           <button id="langEn" class="active" type="button">EN</button>
           <button id="langRu" type="button">RU</button>
@@ -412,243 +586,565 @@
           <button id="langEs" type="button">ES</button>
         </div>
 
-        <a class="btn btnGhost" id="btnDexNav" href="#" target="_blank" rel="noreferrer">📈 Dexscreener</a>
-        <a class="btn btnGhost" id="btnCmcNav" href="#" target="_blank" rel="noreferrer">🧭 CoinMarketCap</a>
-        <button class="btn btnGhost" id="btnWhitepaper" type="button">📄
-          <span data-i18n="en">Whitepaper</span>
-          <span data-i18n="ru">Вайтпейпер</span>
-          <span data-i18n="de">Whitepaper</span>
-          <span data-i18n="es">Whitepaper</span>
+        <a class="btn btnGhost btnSmall" href="#verify" aria-label="Go to verification">
+          <span data-i18n="en">✅ Verify</span>
+          <span data-i18n="ru">✅ Проверка</span>
+          <span data-i18n="de">✅ Prüfung</span>
+          <span data-i18n="es">✅ Verificar</span>
+        </a>
+
+        <a class="btn btnGhost btnSmall" id="btnDexNav" href="#" target="_blank" rel="noreferrer noopener">
+          📈 Dexscreener
+        </a>
+        <a class="btn btnGhost btnSmall" id="btnCmcNav" href="#" target="_blank" rel="noreferrer noopener">
+          🧭 CMC
+        </a>
+
+        <button class="btn btnGhost btnSmall" id="btnWhitepaper" type="button">
+          📄 <span data-i18n="en">Whitepaper</span><span data-i18n="ru">Вайтпейпер</span><span data-i18n="de">Whitepaper</span><span data-i18n="es">Whitepaper</span>
         </button>
-        <button class="btn btnPrimary" id="btnConnect" type="button">🦊
-          <span data-i18n="en">Connect wallet</span>
-          <span data-i18n="ru">Подключить кошелёк</span>
-          <span data-i18n="de">Wallet verbinden</span>
-          <span data-i18n="es">Conectar wallet</span>
+
+        <button class="btn btnPrimary btnSmall" id="btnConnect" type="button">
+          🦊 <span data-i18n="en">Connect</span><span data-i18n="ru">Подключить</span><span data-i18n="de">Verbinden</span><span data-i18n="es">Conectar</span>
         </button>
       </div>
     </div>
+  </div>
 
-    <section class="hero">
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="top">
       <div class="heroInner">
         <div>
           <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
-            <div class="kicker"><span class="spark"></span>
-              <span data-i18n="en">Long-term vision • Transparent contract • Community</span>
-              <span data-i18n="ru">Долгосрочное видение • Прозрачный контракт • Сообщество</span>
-              <span data-i18n="de">Langfristige Vision • Transparenter Vertrag • Community</span>
-              <span data-i18n="es">Visión a largo plazo • Contrato transparente • Comunidad</span>
+            <div class="kicker"><span class="spark" aria-hidden="true"></span>
+              <span data-i18n="en">Trust-first • Verifiable • Community-driven</span>
+              <span data-i18n="ru">Доверие • Проверяемость • Сообщество</span>
+              <span data-i18n="de">Vertrauen • Prüfbarkeit • Community</span>
+              <span data-i18n="es">Confianza • Verificable • Comunidad</span>
             </div>
-            <img class="heroLogo" src="BZS_main_clean.png" alt="BZS logo" />
+            <img class="heroLogo" src="BZS_main_clean.png" alt="BZS logo" loading="eager" decoding="async" />
           </div>
 
           <h1 class="title">BEZOS (BZS)</h1>
 
           <p class="subtitle">
             <span data-i18n="en">
-              BEZOS (BZS) is an ERC-20 token on Ethereum focused on trust and clear rules:
-              fixed supply, verifiable code, and public infrastructure (website + socials + trackers).
-              The goal is sustainable growth, not short-term hype.
+              BEZOS (BZS) is an ERC-20 token on Ethereum built around one idea: <b>trust comes from verification</b>.
+              The website, contract, and tracker links are designed so anyone can cross-check the same contract address everywhere.
+              No profit promises — just clean infrastructure and transparent public references.
             </span>
             <span data-i18n="ru">
-              BEZOS (BZS) — ERC-20 токен в сети Ethereum с акцентом на доверие и понятные правила:
-              фиксированное предложение, проверяемый код и публичная инфраструктура (сайт + соцсети + трекеры).
-              Цель — устойчивое развитие, а не краткосрочный хайп.
+              BEZOS (BZS) — ERC-20 токен в сети Ethereum, построенный вокруг одной идеи: <b>доверие рождается из проверки</b>.
+              Сайт, контракт и ссылки на трекеры сделаны так, чтобы любой мог сверить один и тот же адрес контракта везде.
+              Без обещаний прибыли — только чистая инфраструктура и прозрачные публичные ссылки.
             </span>
             <span data-i18n="de">
-              BEZOS (BZS) ist ein ERC-20-Token auf Ethereum mit Fokus auf Vertrauen und klare Regeln:
-              фиксiertes Angebot, überprüfbarer Code und öffentliche Infrastruktur (Website + Socials + Tracker).
-              Ziel ist nachhaltiges Wachstum, nicht kurzfristiger Hype.
+              BEZOS (BZS) ist ein ERC-20-Token auf Ethereum, der auf einer Idee basiert: <b>Vertrauen entsteht durch Überprüfung</b>.
+              Website, Vertrag und Tracker-Links sind so aufgebaut, dass man überall dieselbe Vertragsadresse verifizieren kann.
+              Keine Gewinnversprechen — nur saubere Infrastruktur und transparente öffentliche Referenzen.
             </span>
             <span data-i18n="es">
-              BEZOS (BZS) es un token ERC-20 en Ethereum enfocado en la confianza y reglas claras:
-              suministro fijo, código verificable e infraestructura pública (web + redes + trackers).
-              El objetivo es crecimiento sostenible, no hype a corto plazo.
+              BEZOS (BZS) es un token ERC-20 en Ethereum con una idea central: <b>la confianza viene de la verificación</b>.
+              Sitio, contrato y enlaces a trackers permiten comprobar la misma dirección de contrato en todas partes.
+              Sin promesas de ganancias — solo infraestructura clara y referencias públicas transparentes.
             </span>
           </p>
 
-          <div class="navBtns" style="justify-content:flex-start">
-            <a class="btn btnPrimary" id="btnEtherscan" href="#" target="_blank" rel="noreferrer">🔎
-              <span data-i18n="en">View on Etherscan</span>
-              <span data-i18n="ru">Открыть в Etherscan</span>
-              <span data-i18n="de">Auf Etherscan ansehen</span>
-              <span data-i18n="es">Ver en Etherscan</span>
+          <div class="navRight" style="justify-content:flex-start">
+            <a class="btn btnPrimary" id="btnEtherscan" href="#" target="_blank" rel="noreferrer noopener">🔎
+              <span data-i18n="en">Etherscan</span><span data-i18n="ru">Etherscan</span><span data-i18n="de">Etherscan</span><span data-i18n="es">Etherscan</span>
             </a>
-            <a class="btn btnWarn" id="btnUniswap" href="#" target="_blank" rel="noreferrer">🦄
-              <span data-i18n="en">Buy on Uniswap</span>
-              <span data-i18n="ru">Купить на Uniswap</span>
-              <span data-i18n="de">Auf Uniswap kaufen</span>
-              <span data-i18n="es">Comprar en Uniswap</span>
+            <a class="btn btnWarn" id="btnUniswap" href="#" target="_blank" rel="noreferrer noopener">🦄
+              <span data-i18n="en">Uniswap</span><span data-i18n="ru">Uniswap</span><span data-i18n="de">Uniswap</span><span data-i18n="es">Uniswap</span>
             </a>
             <button class="btn" id="btnCopy" type="button">📋
               <span data-i18n="en">Copy contract</span>
-              <span data-i18n="ru">Копировать контракт</span>
-              <span data-i18n="de">Vertrag kopieren</span>
-              <span data-i18n="es">Copiar contrato</span>
+              <span data-i18n="ru">Копировать</span>
+              <span data-i18n="de">Kopieren</span>
+              <span data-i18n="es">Copiar</span>
+            </button>
+            <button class="btn btnGhost" id="btnShare" type="button">🔗
+              <span data-i18n="en">Share</span><span data-i18n="ru">Поделиться</span><span data-i18n="de">Teilen</span><span data-i18n="es">Compartir</span>
             </button>
           </div>
 
-          <div class="grid3">
+          <div class="grid3" aria-label="Key token info">
             <div class="stat">
               <div class="k"><span data-i18n="en">Total supply</span><span data-i18n="ru">Общее предложение</span><span data-i18n="de">Gesamtangebot</span><span data-i18n="es">Suministro total</span></div>
               <div class="v">1,000,000,000 BZS</div>
-              <div class="small">
-                <span data-i18n="en">Fixed supply (no “surprise” mint).</span>
-                <span data-i18n="ru">Фиксированное предложение (без “неожиданного” минта).</span>
-                <span data-i18n="de">Fixes Angebot (kein „Überraschungs“-Mint).</span>
-                <span data-i18n="es">Suministro fijo (sin mint “sorpresa”).</span>
+              <div class="s">
+                <span data-i18n="en">Fixed supply at deployment.</span>
+                <span data-i18n="ru">Фиксированное предложение при деплое.</span>
+                <span data-i18n="de">Fixes Angebot beim Deployment.</span>
+                <span data-i18n="es">Suministro fijo al desplegar.</span>
               </div>
             </div>
             <div class="stat">
               <div class="k"><span data-i18n="en">Decimals</span><span data-i18n="ru">Десятичные</span><span data-i18n="de">Dezimalstellen</span><span data-i18n="es">Decimales</span></div>
               <div class="v">18</div>
-              <div class="small">
+              <div class="s">
                 <span data-i18n="en">Standard ERC-20 format.</span>
                 <span data-i18n="ru">Стандартный формат ERC-20.</span>
                 <span data-i18n="de">Standard für ERC-20.</span>
-                <span data-i18n="es">Estándar para ERC-20.</span>
+                <span data-i18n="es">Estándar ERC-20.</span>
               </div>
             </div>
             <div class="stat">
               <div class="k"><span data-i18n="en">Standard</span><span data-i18n="ru">Стандарт</span><span data-i18n="de">Standard</span><span data-i18n="es">Estándar</span></div>
               <div class="v">ERC-20 + Permit</div>
-              <div class="small">
-                <span data-i18n="en">Permit signatures for smoother UX.</span>
-                <span data-i18n="ru">Подписи Permit для более удобного UX.</span>
-                <span data-i18n="de">Permit-Signaturen für bessere UX.</span>
-                <span data-i18n="es">Firmas Permit para mejor UX.</span>
+              <div class="s">
+                <span data-i18n="en">Permit support for smoother UX.</span>
+                <span data-i18n="ru">Permit для удобного UX.</span>
+                <span data-i18n="de">Permit für bessere UX.</span>
+                <span data-i18n="es">Permit para mejor UX.</span>
               </div>
             </div>
           </div>
 
+          <!-- Milestone countdown -->
           <div class="panel" style="margin-top:14px;">
             <div class="panelHead">
-              <h3>⏳ <span data-i18n="en">Next milestone</span><span data-i18n="ru">Следующий этап</span><span data-i18n="de">Nächster Meilenstein</span><span data-i18n="es">Próximo hito</span></h3>
-              <span class="badge" id="milestoneLabel"><span data-i18n="en">Liquidity & Tracking</span><span data-i18n="ru">Ликвидность и трекинг</span><span data-i18n="de">Liquidität & Tracking</span><span data-i18n="es">Liquidez y tracking</span></span>
+              <h2>⏳ <span data-i18n="en">Next milestone</span><span data-i18n="ru">Следующий этап</span><span data-i18n="de">Nächster Meilenstein</span><span data-i18n="es">Próximo hito</span></h2>
+              <span class="badge" id="milestoneLabel">
+                <span data-i18n="en">Liquidity & Tracking</span>
+                <span data-i18n="ru">Ликвидность и трекинг</span>
+                <span data-i18n="de">Liquidität & Tracking</span>
+                <span data-i18n="es">Liquidez y tracking</span>
+              </span>
             </div>
             <div class="panelBody" style="text-align:left;">
               <div class="muted">
-                <span data-i18n="en">Countdown to the next phase (you can change the date in code).</span>
-                <span data-i18n="ru">Отсчёт до следующей фазы (дату можно изменить в коде).</span>
-                <span data-i18n="de">Countdown bis zur nächsten Phase (Datum im Code ändern).</span>
-                <span data-i18n="es">Cuenta atrás para la siguiente fase (cambia la fecha en el código).</span>
+                <span data-i18n="en">Public countdown (plan). You can change the date in the code.</span>
+                <span data-i18n="ru">Публичный отсчёт (план). Дату можно изменить в коде.</span>
+                <span data-i18n="de">Öffentlicher Countdown (Plan). Datum im Code anpassen.</span>
+                <span data-i18n="es">Cuenta atrás pública (plan). Cambia la fecha en el código.</span>
               </div>
-              <div class="count" id="countdown"></div>
+              <div class="count" id="countdown" aria-live="polite"></div>
               <div class="small" style="margin-top:8px;">
-                <span data-i18n="en">*No market guarantees. This is a public plan, not a promise of profit.</span>
-                <span data-i18n="ru">*Нет гарантий рынка. Это публичный план, не обещание прибыли.</span>
-                <span data-i18n="de">*Keine Marktgarantien. Das ist ein Plan, kein Gewinnversprechen.</span>
-                <span data-i18n="es">*Sin garantías. Es un plan público, no una promesa de ganancias.</span>
+                <span data-i18n="en">*No guarantees. Not financial advice. Always DYOR.</span>
+                <span data-i18n="ru">*Без гарантий. Не финсовет. Всегда DYOR.</span>
+                <span data-i18n="de">*Keine Garantien. Keine Finanzberatung. DYOR.</span>
+                <span data-i18n="es">*Sin garantías. No es asesoramiento financiero. DYOR.</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="label"><span data-i18n="en">Contract address</span><span data-i18n="ru">Адрес контракта</span><span data-i18n="de">Vertragsadresse</span><span data-i18n="es">Dirección del contrato</span></div>
+        <!-- Right column: Contract + quick trust -->
+        <aside class="card" aria-label="Contract details">
+          <div class="label">
+            <span data-i18n="en">Contract address</span>
+            <span data-i18n="ru">Адрес контракта</span>
+            <span data-i18n="de">Vertragsadresse</span>
+            <span data-i18n="es">Dirección del contrato</span>
+          </div>
+
           <div style="margin-top:10px;">
             <div class="mono" id="contractDisplay">0x0000000000000000000000000000000000000000</div>
           </div>
 
-          <div class="section">
-            <div class="card" style="background:rgba(255,255,255,.04); border-color: rgba(255,255,255,.10); text-align:left;">
-              <div class="label"><span data-i18n="en">Security & Trust</span><span data-i18n="ru">Безопасность и доверие</span><span data-i18n="de">Sicherheit & Vertrauen</span><span data-i18n="es">Seguridad y confianza</span></div>
-              <ul class="list">
-                <li><span class="check">✓</span>
-                  <span data-i18n="en">Source code is public and verifiable on the explorer.</span>
-                  <span data-i18n="ru">Исходный код публичный и проверяемый в explorer.</span>
-                  <span data-i18n="de">Quellcode ist öffentlich und im Explorer verifizierbar.</span>
-                  <span data-i18n="es">El código es público y verificable en el explorer.</span>
-                </li>
-                <li><span class="check">✓</span>
-                  <span data-i18n="en">Transparent supply (planned: no additional minting).</span>
-                  <span data-i18n="ru">Прозрачный supply (план: без дополнительного минта).</span>
-                  <span data-i18n="de">Transparentes Angebot (geplant: kein weiteres Minting).</span>
-                  <span data-i18n="es">Suministro transparente (plan: sin mint adicional).</span>
-                </li>
-                <li><span class="check">✓</span>
-                  <span data-i18n="en">Official links to website, socials, and trackers.</span>
-                  <span data-i18n="ru">Официальные ссылки: сайт, соцсети и трекеры.</span>
-                  <span data-i18n="de">Offizielle Links: Website, Socials und Tracker.</span>
-                  <span data-i18n="es">Enlaces oficiales: web, redes y trackers.</span>
-                </li>
-              </ul>
-              <div class="small" style="margin-top:8px;">
-                <span data-i18n="en">Note: if you have an audit/lock/renounce — add proof links here (no false claims).</span>
-                <span data-i18n="ru">Примечание: аудит/lock/renounce — добавляем только с доказательствами (без ложных заявлений).</span>
-                <span data-i18n="de">Hinweis: Audit/Lock/Renounce nur mit Nachweisen (keine falschen Aussagen).</span>
-                <span data-i18n="es">Nota: audit/lock/renounce solo con pruebas (sin afirmaciones falsas).</span>
-              </div>
-            </div>
+          <div class="divider"></div>
 
-            <div class="card" style="background:rgba(255,255,255,.04); border-color: rgba(255,255,255,.10); text-align:left;">
-              <div class="label"><span data-i18n="en">How to buy</span><span data-i18n="ru">Как купить</span><span data-i18n="de">So kaufst du</span><span data-i18n="es">Cómo comprar</span></div>
-              <ul class="list">
-                <li><span class="check">✓</span>
-                  <span data-i18n="en">Open Uniswap and select BZS via the contract address.</span>
-                  <span data-i18n="ru">Открой Uniswap и выбери BZS по адресу контракта.</span>
-                  <span data-i18n="de">Öffne Uniswap und wähle BZS über die Vertragsadresse.</span>
-                  <span data-i18n="es">Abre Uniswap y selecciona BZS usando la dirección del contrato.</span>
-                </li>
-                <li><span class="check">✓</span>
-                  <span data-i18n="en">Verify the address on Etherscan (must match the website).</span>
-                  <span data-i18n="ru">Проверь адрес в Etherscan (должен совпадать с сайтом).</span>
-                  <span data-i18n="de">Prüfe die Adresse auf Etherscan (muss mit der Website übereinstimmen).</span>
-                  <span data-i18n="es">Verifica la dirección en Etherscan (debe coincidir con la web).</span>
-                </li>
-                <li><span class="check">✓</span>
-                  <span data-i18n="en">Start small and watch slippage/fees.</span>
-                  <span data-i18n="ru">Начни с малого и следи slippage/комиссии.</span>
-                  <span data-i18n="de">Starte klein und achte auf Slippage/Gebühren.</span>
-                  <span data-i18n="es">Empieza con poco y revisa slippage/comisiones.</span>
-                </li>
-              </ul>
-            </div>
+          <div class="label">
+            <span data-i18n="en">Quick trust checklist</span>
+            <span data-i18n="ru">Чеклист доверия</span>
+            <span data-i18n="de">Vertrauens-Checkliste</span>
+            <span data-i18n="es">Checklist de confianza</span>
           </div>
 
-          <div class="panel" style="margin-top:14px;">
-            <div class="panelHead">
-              <h3>🔗 <span data-i18n="en">Official links</span><span data-i18n="ru">Официальные ссылки</span><span data-i18n="de">Offizielle Links</span><span data-i18n="es">Enlaces oficiales</span></h3>
-              <span class="small"><span data-i18n="en">always verify the domain</span><span data-i18n="ru">всегда проверяй домен</span><span data-i18n="de">Domain immer prüfen</span><span data-i18n="es">verifica el dominio</span></span>
-            </div>
-            <div class="panelBody" style="text-align:left;">
-              <div class="small muted">
-                <span data-i18n="en">These links are where people verify legitimacy.</span>
-                <span data-i18n="ru">По этим ссылкам люди проверяют легитимность.</span>
-                <span data-i18n="de">Über diese Links prüfen Nutzer die Echtheit.</span>
-                <span data-i18n="es">Estos enlaces sirven para verificar legitimidad.</span>
-              </div>
-              <div class="navBtns" style="margin-top:10px; justify-content:flex-start;">
-                <a class="btn btnGhost" id="linkX" href="#" target="_blank" rel="noreferrer">X/Twitter</a>
-                <a class="btn btnGhost" id="linkTG" href="#" target="_blank" rel="noreferrer">Telegram</a>
-                <a class="btn btnGhost" id="linkDiscord" href="#" target="_blank" rel="noreferrer">Discord</a>
-                <a class="btn btnGhost" id="linkMedium" href="#" target="_blank" rel="noreferrer">Medium</a>
-                <a class="btn btnGhost" id="linkGitHub" href="#" target="_blank" rel="noreferrer">GitHub</a>
-              </div>
-              <div class="small" style="margin-top:10px;">
-                <span data-i18n="en">Tip: use the same @handle everywhere for consistency.</span>
-                <span data-i18n="ru">Совет: используй один и тот же @handle везде.</span>
-                <span data-i18n="de">Tipp: überall denselben @Handle nutzen.</span>
-                <span data-i18n="es">Tip: usa el mismo @handle en todas partes.</span>
-              </div>
-            </div>
-          </div>
+          <ul class="list">
+            <li><span class="check">✓</span>
+              <span data-i18n="en">Verify the same contract address on Etherscan and Dexscreener.</span>
+              <span data-i18n="ru">Сверьте один и тот же адрес на Etherscan и Dexscreener.</span>
+              <span data-i18n="de">Prüfe dieselbe Adresse auf Etherscan und Dexscreener.</span>
+              <span data-i18n="es">Verifica la misma dirección en Etherscan y Dexscreener.</span>
+            </li>
+            <li><span class="check">✓</span>
+              <span data-i18n="en">Use only official links from this website (avoid imposters).</span>
+              <span data-i18n="ru">Используйте только ссылки с этого сайта (остерегайтесь фейков).</span>
+              <span data-i18n="de">Nur offizielle Links dieser Website nutzen (Vorsicht vor Fakes).</span>
+              <span data-i18n="es">Usa solo enlaces oficiales de esta web (evita suplantaciones).</span>
+            </li>
+            <li><span class="check">✓</span>
+              <span data-i18n="en">Start small and review swap settings (slippage/fees).</span>
+              <span data-i18n="ru">Начните с малого и проверьте slippage/комиссии.</span>
+              <span data-i18n="de">Starte klein und prüfe Slippage/Gebühren.</span>
+              <span data-i18n="es">Empieza con poco y revisa slippage/comisiones.</span>
+            </li>
+          </ul>
 
+          <div class="divider"></div>
+
+          <div class="navRight" style="justify-content:flex-start">
+            <a class="btn btnGhost" href="#links">
+              🔗 <span data-i18n="en">Official links</span><span data-i18n="ru">Офиц. ссылки</span><span data-i18n="de">Offizielle Links</span><span data-i18n="es">Enlaces oficiales</span>
+            </a>
+            <a class="btn btnGhost" href="#tracking">
+              📊 <span data-i18n="en">Tracking</span><span data-i18n="ru">Трекинг</span><span data-i18n="de">Tracking</span><span data-i18n="es">Tracking</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- VERIFY / HOW TO AVOID SCAMS -->
+    <section class="panel" id="verify">
+      <div class="panelHead">
+        <h3>✅ <span data-i18n="en">How to verify</span><span data-i18n="ru">Как проверить</span><span data-i18n="de">So verifizierst du</span><span data-i18n="es">Cómo verificar</span></h3>
+        <span class="small"><span data-i18n="en">trust = consistency</span><span data-i18n="ru">доверие = совпадение</span><span data-i18n="de">Vertrauen = Konsistenz</span><span data-i18n="es">confianza = consistencia</span></span>
+      </div>
+      <div class="panelBody">
+        <div class="cols">
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Step 1</span><span data-i18n="ru">Шаг 1</span><span data-i18n="de">Schritt 1</span><span data-i18n="es">Paso 1</span></div>
+            <p class="muted" style="margin-top:8px; line-height:1.6;">
+              <span data-i18n="en">Open Etherscan and confirm the contract address matches this website exactly.</span>
+              <span data-i18n="ru">Откройте Etherscan и убедитесь, что адрес контракта совпадает с сайтом.</span>
+              <span data-i18n="de">Öffne Etherscan und prüfe, dass die Vertragsadresse exakt passt.</span>
+              <span data-i18n="es">Abre Etherscan y confirma que la dirección coincide con esta web.</span>
+            </p>
+          </div>
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Step 2</span><span data-i18n="ru">Шаг 2</span><span data-i18n="de">Schritt 2</span><span data-i18n="es">Paso 2</span></div>
+            <p class="muted" style="margin-top:8px; line-height:1.6;">
+              <span data-i18n="en">Open Dexscreener and confirm the same contract address and the correct pair.</span>
+              <span data-i18n="ru">Откройте Dexscreener и проверьте тот же адрес и правильную пару.</span>
+              <span data-i18n="de">Öffne Dexscreener und prüfe dieselbe Adresse und das richtige Pair.</span>
+              <span data-i18n="es">Abre Dexscreener y verifica la misma dirección y el par correcto.</span>
+            </p>
+          </div>
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Avoid scams</span><span data-i18n="ru">Анти-скам</span><span data-i18n="de">Scam-Schutz</span><span data-i18n="es">Evita estafas</span></div>
+            <ul class="list">
+              <li><span class="check">✓</span>
+                <span data-i18n="en">Never trust DMs offering “support” or “airdrops”.</span>
+                <span data-i18n="ru">Не доверяйте личным сообщениям с “поддержкой/airdrops”.</span>
+                <span data-i18n="de">Keine DMs mit „Support/Airdrops“ vertrauen.</span>
+                <span data-i18n="es">No confíes en DMs con “soporte/airdrops”.</span>
+              </li>
+              <li><span class="check">✓</span>
+                <span data-i18n="en">Only use the links listed on this website.</span>
+                <span data-i18n="ru">Пользуйтесь только ссылками с сайта.</span>
+                <span data-i18n="de">Nur Links dieser Website verwenden.</span>
+                <span data-i18n="es">Usa solo enlaces de esta web.</span>
+              </li>
+              <li><span class="check">✓</span>
+                <span data-i18n="en">Always verify contract address before swapping.</span>
+                <span data-i18n="ru">Всегда проверяйте адрес контракта перед свапом.</span>
+                <span data-i18n="de">Adresse vor dem Swap immer prüfen.</span>
+                <span data-i18n="es">Verifica la dirección antes de hacer swap.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="navRight" style="justify-content:flex-start; margin-top:12px;">
+          <a class="btn btnPrimary" id="btnEtherscan2" href="#" target="_blank" rel="noreferrer noopener">🔎 Etherscan</a>
+          <a class="btn btnGhost" id="btnDex2" href="#" target="_blank" rel="noreferrer noopener">📈 Dexscreener</a>
+          <button class="btn" id="btnCopy2" type="button">📋 <span data-i18n="en">Copy</span><span data-i18n="ru">Копировать</span><span data-i18n="de">Kopieren</span><span data-i18n="es">Copiar</span></button>
         </div>
       </div>
     </section>
 
-    <div class="footer">
+    <!-- TRACKING -->
+    <section class="panel" id="tracking">
+      <div class="panelHead">
+        <h3>📊 <span data-i18n="en">Tracking & transparency</span><span data-i18n="ru">Трекинг и прозрачность</span><span data-i18n="de">Tracking & Transparenz</span><span data-i18n="es">Tracking y transparencia</span></h3>
+        <span class="small"><span data-i18n="en">public references</span><span data-i18n="ru">публичные ссылки</span><span data-i18n="de">öffentliche Referenzen</span><span data-i18n="es">referencias públicas</span></span>
+      </div>
+      <div class="panelBody">
+        <div class="cols">
+          <div class="card" style="text-align:left;">
+            <div class="label">Dexscreener</div>
+            <p class="muted" style="margin-top:8px; line-height:1.6;">
+              <span data-i18n="en">Primary place to see liquidity, volume, and price action.</span>
+              <span data-i18n="ru">Основное место для ликвидности, объёма и графика.</span>
+              <span data-i18n="de">Hauptquelle für Liquidität, Volumen und Kurs.</span>
+              <span data-i18n="es">Lugar principal para liquidez, volumen y precio.</span>
+            </p>
+            <div class="navRight" style="justify-content:flex-start; margin-top:10px;">
+              <a class="btn btnPrimary" id="btnDex" href="#" target="_blank" rel="noreferrer noopener">
+                <span data-i18n="en">Open Dexscreener</span><span data-i18n="ru">Открыть</span><span data-i18n="de">Öffnen</span><span data-i18n="es">Abrir</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="card" style="text-align:left;">
+            <div class="label">CoinMarketCap</div>
+            <p class="muted" style="margin-top:8px; line-height:1.6;">
+              <span data-i18n="en">CMC requires submission & approval. Link appears here once listed.</span>
+              <span data-i18n="ru">CMC требует подачи и одобрения. Ссылка появится после листинга.</span>
+              <span data-i18n="de">CMC braucht Einreichung & Freigabe. Link nach Listing.</span>
+              <span data-i18n="es">CMC requiere envío y aprobación. Enlace cuando esté listado.</span>
+            </p>
+            <div class="navRight" style="justify-content:flex-start; margin-top:10px;">
+              <a class="btn btnGhost" id="btnCmc" href="#" target="_blank" rel="noreferrer noopener">🧭
+                <span data-i18n="en">CMC (coming soon)</span><span data-i18n="ru">CMC (скоро)</span><span data-i18n="de">CMC (bald)</span><span data-i18n="es">CMC (pronto)</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Proofs</span><span data-i18n="ru">Доказательства</span><span data-i18n="de">Nachweise</span><span data-i18n="es">Pruebas</span></div>
+            <ul class="list">
+              <li><span class="check">✓</span>
+                <span data-i18n="en">When available: liquidity tx, lock proof, audits.</span>
+                <span data-i18n="ru">Когда будет: tx ликвидности, lock proof, аудиты.</span>
+                <span data-i18n="de">Wenn verfügbar: Liquidity-Tx, Lock-Proof, Audits.</span>
+                <span data-i18n="es">Cuando haya: tx de liquidez, lock proof, auditorías.</span>
+              </li>
+              <li><span class="check">✓</span>
+                <span data-i18n="en">Only publish verifiable links (no unproven claims).</span>
+                <span data-i18n="ru">Только проверяемые ссылки (без голословных заявлений).</span>
+                <span data-i18n="de">Nur verifizierbare Links (keine unbelegten Claims).</span>
+                <span data-i18n="es">Solo enlaces verificables (sin afirmaciones sin prueba).</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px; text-align:left;">
+          <div class="label"><span data-i18n="en">Live chart embed (optional)</span><span data-i18n="ru">Встроенный график (опционально)</span><span data-i18n="de">Chart-Embed (optional)</span><span data-i18n="es">Embed de gráfico (opcional)</span></div>
+          <p class="small muted" style="margin-top:8px;">
+            <span data-i18n="en">If you have a Dexscreener embed URL, set DEXSCREENER_EMBED_URL in the code.</span>
+            <span data-i18n="ru">Если у вас есть embed URL Dexscreener — укажите DEXSCREENER_EMBED_URL в коде.</span>
+            <span data-i18n="de">Wenn du eine Dexscreener-Embed-URL hast, setze DEXSCREENER_EMBED_URL im Code.</span>
+            <span data-i18n="es">Si tienes URL de embed de Dexscreener, define DEXSCREENER_EMBED_URL en el código.</span>
+          </p>
+          <div class="embed" id="dexEmbed">
+            <div style="display:grid;place-items:center;height:100%;color:rgba(238,243,255,.65);padding:16px;text-align:center;">
+              <span data-i18n="en">Add Dexscreener embed URL to show the live chart here.</span>
+              <span data-i18n="ru">Добавьте embed URL Dexscreener, чтобы показать график здесь.</span>
+              <span data-i18n="de">Füge die Dexscreener-Embed-URL hinzu, um den Chart hier zu zeigen.</span>
+              <span data-i18n="es">Añade la URL de embed de Dexscreener para mostrar el gráfico aquí.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOKENOMICS / DETAILS -->
+    <section class="panel" id="tokenomics">
+      <div class="panelHead">
+        <h3>🧾 <span data-i18n="en">Token details</span><span data-i18n="ru">Детали токена</span><span data-i18n="de">Token-Details</span><span data-i18n="es">Detalles del token</span></h3>
+        <span class="small"><span data-i18n="en">clear, simple, verifiable</span><span data-i18n="ru">ясно, просто, проверяемо</span><span data-i18n="de">klar, einfach, prüfbar</span><span data-i18n="es">claro, simple, verificable</span></span>
+      </div>
+      <div class="panelBody">
+        <div class="cols">
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Core parameters</span><span data-i18n="ru">Параметры</span><span data-i18n="de">Parameter</span><span data-i18n="es">Parámetros</span></div>
+            <ul class="list">
+              <li><span class="check">✓</span><span class="muted">Symbol:</span>&nbsp;<b>BZS</b></li>
+              <li><span class="check">✓</span><span class="muted">Network:</span>&nbsp;<b>Ethereum</b></li>
+              <li><span class="check">✓</span><span class="muted">Decimals:</span>&nbsp;<b>18</b></li>
+              <li><span class="check">✓</span><span class="muted">Total supply:</span>&nbsp;<b>1,000,000,000</b></li>
+            </ul>
+          </div>
+
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Design goals</span><span data-i18n="ru">Цели</span><span data-i18n="de">Ziele</span><span data-i18n="es">Objetivos</span></div>
+            <ul class="list">
+              <li><span class="check">✓</span>
+                <span data-i18n="en">Make verification easy (same address everywhere).</span>
+                <span data-i18n="ru">Упростить проверку (один адрес везде).</span>
+                <span data-i18n="de">Verifikation erleichtern (gleiche Adresse überall).</span>
+                <span data-i18n="es">Facilitar la verificación (misma dirección en todas partes).</span>
+              </li>
+              <li><span class="check">✓</span>
+                <span data-i18n="en">Keep communication consistent & public.</span>
+                <span data-i18n="ru">Коммуникации — единые и публичные.</span>
+                <span data-i18n="de">Kommunikation konsistent & öffentlich.</span>
+                <span data-i18n="es">Comunicación consistente y pública.</span>
+              </li>
+              <li><span class="check">✓</span>
+                <span data-i18n="en">No unrealistic claims or “guarantees”.</span>
+                <span data-i18n="ru">Без нереалистичных заявлений и “гарантий”.</span>
+                <span data-i18n="de">Keine unrealistischen Behauptungen/„Garantien“.</span>
+                <span data-i18n="es">Sin afirmaciones irreales ni “garantías”.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">How to buy (clean)</span><span data-i18n="ru">Как купить</span><span data-i18n="de">So kaufst du</span><span data-i18n="es">Cómo comprar</span></div>
+            <ul class="list">
+              <li><span class="check">✓</span>
+                <span data-i18n="en">Open Uniswap → paste contract address → confirm.</span>
+                <span data-i18n="ru">Открой Uniswap → вставь адрес → подтверди.</span>
+                <span data-i18n="de">Uniswap öffnen → Adresse einfügen → bestätigen.</span>
+                <span data-i18n="es">Abre Uniswap → pega la dirección → confirma.</span>
+              </li>
+              <li><span class="check">✓</span>
+                <span data-i18n="en">Verify the address on Etherscan matches this website.</span>
+                <span data-i18n="ru">Проверь в Etherscan, что адрес совпадает с сайтом.</span>
+                <span data-i18n="de">Prüfe, dass die Adresse auf Etherscan passt.</span>
+                <span data-i18n="es">Verifica en Etherscan que coincide con esta web.</span>
+              </li>
+              <li><span class="check">✓</span>
+                <span data-i18n="en">Start small, review slippage & gas.</span>
+                <span data-i18n="ru">Начни с малого, проверь slippage и gas.</span>
+                <span data-i18n="de">Starte klein, prüfe Slippage & Gas.</span>
+                <span data-i18n="es">Empieza pequeño, revisa slippage y gas.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="panel" id="roadmap">
+      <div class="panelHead">
+        <h3>🗺️ <span data-i18n="en">Roadmap</span><span data-i18n="ru">План</span><span data-i18n="de">Roadmap</span><span data-i18n="es">Hoja de ruta</span></h3>
+        <span class="small"><span data-i18n="en">measurable steps</span><span data-i18n="ru">измеримые шаги</span><span data-i18n="de">messbare Schritte</span><span data-i18n="es">pasos medibles</span></span>
+      </div>
+      <div class="panelBody">
+        <div class="cols">
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Phase 1 — Foundation</span><span data-i18n="ru">Фаза 1 — Основа</span><span data-i18n="de">Phase 1 — Basis</span><span data-i18n="es">Fase 1 — Base</span></div>
+            <ul class="list">
+              <li><span class="check">✓</span><span data-i18n="en">Deploy + verify contract</span><span data-i18n="ru">Деплой + верификация</span><span data-i18n="de">Deploy + Verifikation</span><span data-i18n="es">Despliegue + verificación</span></li>
+              <li><span class="check">✓</span><span data-i18n="en">Official website + links</span><span data-i18n="ru">Офиц. сайт + ссылки</span><span data-i18n="de">Offizielle Website + Links</span><span data-i18n="es">Web oficial + enlaces</span></li>
+              <li><span class="check">✓</span><span data-i18n="en">Consistent communications</span><span data-i18n="ru">Единые коммуникации</span><span data-i18n="de">Konsistente Kommunikation</span><span data-i18n="es">Comunicación consistente</span></li>
+            </ul>
+          </div>
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Phase 2 — Liquidity & Tracking</span><span data-i18n="ru">Фаза 2 — Ликвидность</span><span data-i18n="de">Phase 2 — Liquidität</span><span data-i18n="es">Fase 2 — Liquidez</span></div>
+            <ul class="list">
+              <li><span class="check">✓</span><span data-i18n="en">Uniswap liquidity + tracker links</span><span data-i18n="ru">Ликвидность + трекеры</span><span data-i18n="de">Liquidität + Tracker-Links</span><span data-i18n="es">Liquidez + enlaces</span></li>
+              <li><span class="check">✓</span><span data-i18n="en">Proof links (tx/locks/audits if any)</span><span data-i18n="ru">Доказательства (tx/lock/audit)</span><span data-i18n="de">Nachweise (Tx/Lock/Audit)</span><span data-i18n="es">Pruebas (tx/lock/audit)</span></li>
+              <li><span class="check">✓</span><span data-i18n="en">Community growth & safety education</span><span data-i18n="ru">Рост сообщества + безопасность</span><span data-i18n="de">Community-Wachstum + Safety</span><span data-i18n="es">Crecimiento + seguridad</span></li>
+            </ul>
+          </div>
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Phase 3 — Listings & Expansion</span><span data-i18n="ru">Фаза 3 — Листинги</span><span data-i18n="de">Phase 3 — Listings</span><span data-i18n="es">Fase 3 — Listados</span></div>
+            <ul class="list">
+              <li><span class="check">✓</span><span data-i18n="en">CMC / CoinGecko submissions</span><span data-i18n="ru">Подача на CMC/CG</span><span data-i18n="de">CMC/CG Einreichungen</span><span data-i18n="es">Envíos a CMC/CG</span></li>
+              <li><span class="check">✓</span><span data-i18n="en">Utilities (only when real & provable)</span><span data-i18n="ru">Полезности (только реальные)</span><span data-i18n="de">Utilities (nur real & belegbar)</span><span data-i18n="es">Utilidades (solo reales)</span></li>
+              <li><span class="check">✓</span><span data-i18n="en">Long-term brand & ecosystem</span><span data-i18n="ru">Бренд и экосистема</span><span data-i18n="de">Brand & Ökosystem</span><span data-i18n="es">Marca y ecosistema</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM / OPERATIONS -->
+    <section class="panel" id="team">
+      <div class="panelHead">
+        <h3>👥 <span data-i18n="en">Operations</span><span data-i18n="ru">Операции</span><span data-i18n="de">Betrieb</span><span data-i18n="es">Operaciones</span></h3>
+        <span class="small"><span data-i18n="en">public-build approach</span><span data-i18n="ru">публичная сборка</span><span data-i18n="de">Public-build</span><span data-i18n="es">construcción pública</span></span>
+      </div>
+      <div class="panelBody">
+        <div class="cols">
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Principle</span><span data-i18n="ru">Принцип</span><span data-i18n="de">Prinzip</span><span data-i18n="es">Principio</span></div>
+            <p class="muted" style="margin-top:8px; line-height:1.6;">
+              <span data-i18n="en">Build in public: publish verifiable links and keep updates consistent across channels.</span>
+              <span data-i18n="ru">Строим публично: публикуем проверяемые ссылки и синхронные обновления.</span>
+              <span data-i18n="de">Public-build: verifizierbare Links veröffentlichen, Updates konsistent halten.</span>
+              <span data-i18n="es">Construir en público: enlaces verificables y actualizaciones consistentes.</span>
+            </p>
+          </div>
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Communication</span><span data-i18n="ru">Коммуникации</span><span data-i18n="de">Kommunikation</span><span data-i18n="es">Comunicación</span></div>
+            <p class="muted" style="margin-top:8px; line-height:1.6;">
+              <span data-i18n="en">Post important updates simultaneously on X and Telegram. Avoid private “support” DMs.</span>
+              <span data-i18n="ru">Важные новости — одновременно в X и Telegram. Избегайте “поддержки” в личке.</span>
+              <span data-i18n="de">Wichtige Updates gleichzeitig in X & Telegram. Keine „Support“-DMs.</span>
+              <span data-i18n="es">Actualizaciones importantes a la vez en X y Telegram. Evita DMs de “soporte”.</span>
+            </p>
+          </div>
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Safety</span><span data-i18n="ru">Безопасность</span><span data-i18n="de">Sicherheit</span><span data-i18n="es">Seguridad</span></div>
+            <p class="muted" style="margin-top:8px; line-height:1.6;">
+              <span data-i18n="en">No guaranteed returns. Crypto is volatile. Always verify contract address and links.</span>
+              <span data-i18n="ru">Нет гарантированной прибыли. Рынок волатилен. Всегда проверяйте адрес и ссылки.</span>
+              <span data-i18n="de">Keine garantierten Renditen. Volatil. Immer Adresse & Links prüfen.</span>
+              <span data-i18n="es">Sin rendimientos garantizados. Volátil. Verifica dirección y enlaces.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS / SOCIAL -->
+    <section class="panel" id="links">
+      <div class="panelHead">
+        <h3>🔗 <span data-i18n="en">Official links</span><span data-i18n="ru">Официальные ссылки</span><span data-i18n="de">Offizielle Links</span><span data-i18n="es">Enlaces oficiales</span></h3>
+        <span class="small"><span data-i18n="en">use only these</span><span data-i18n="ru">используйте только их</span><span data-i18n="de">nur diese nutzen</span><span data-i18n="es">usa solo estos</span></span>
+      </div>
+      <div class="panelBody">
+        <div class="cols">
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Social</span><span data-i18n="ru">Соцсети</span><span data-i18n="de">Social</span><span data-i18n="es">Redes</span></div>
+            <div class="navRight" style="justify-content:flex-start; margin-top:10px;">
+              <a class="btn btnGhost" id="linkX" href="#" target="_blank" rel="noreferrer noopener">X/Twitter</a>
+              <a class="btn btnGhost" id="linkTG" href="#" target="_blank" rel="noreferrer noopener">Telegram</a>
+              <a class="btn btnGhost" id="linkDiscord" href="#" target="_blank" rel="noreferrer noopener">Discord</a>
+              <a class="btn btnGhost" id="linkMedium" href="#" target="_blank" rel="noreferrer noopener">Medium</a>
+              <a class="btn btnGhost" id="linkGitHub" href="#" target="_blank" rel="noreferrer noopener">GitHub</a>
+            </div>
+            <p class="small muted" style="margin-top:10px;">
+              <span data-i18n="en">Tip: keep the same handle across platforms to prevent impersonation.</span>
+              <span data-i18n="ru">Совет: одинаковый @handle везде снижает риск фейков.</span>
+              <span data-i18n="de">Tipp: gleicher @Handle reduziert Fake-Risiko.</span>
+              <span data-i18n="es">Tip: el mismo @handle reduce suplantaciones.</span>
+            </p>
+          </div>
+
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Trackers</span><span data-i18n="ru">Трекеры</span><span data-i18n="de">Tracker</span><span data-i18n="es">Trackers</span></div>
+            <div class="navRight" style="justify-content:flex-start; margin-top:10px;">
+              <a class="btn btnPrimary" id="btnDex3" href="#" target="_blank" rel="noreferrer noopener">Dexscreener</a>
+              <a class="btn btnGhost" id="btnCmc2" href="#" target="_blank" rel="noreferrer noopener">CoinMarketCap</a>
+              <a class="btn btnGhost" id="btnEtherscan3" href="#" target="_blank" rel="noreferrer noopener">Etherscan</a>
+            </div>
+            <p class="small muted" style="margin-top:10px;">
+              <span data-i18n="en">Keep these links in sync everywhere. Consistency builds trust.</span>
+              <span data-i18n="ru">Синхронизируйте ссылки везде. Совпадение = доверие.</span>
+              <span data-i18n="de">Links überall synchron halten. Konsistenz = Vertrauen.</span>
+              <span data-i18n="es">Mantén los enlaces consistentes. Consistencia = confianza.</span>
+            </p>
+          </div>
+
+          <div class="card" style="text-align:left;">
+            <div class="label"><span data-i18n="en">Contact</span><span data-i18n="ru">Контакт</span><span data-i18n="de">Kontakt</span><span data-i18n="es">Contacto</span></div>
+            <p class="muted" style="margin-top:8px; line-height:1.6;">
+              <span data-i18n="en">For partnerships or listings: use official channels only. Never share seed phrases.</span>
+              <span data-i18n="ru">Для партнёрств/листингов используйте только официальные каналы. Никогда не делитесь seed.</span>
+              <span data-i18n="de">Für Partnerschaften/Listings nur offizielle Kanäle. Seed niemals teilen.</span>
+              <span data-i18n="es">Para alianzas/listados: solo canales oficiales. Nunca compartas seed.</span>
+            </p>
+            <div class="navRight" style="justify-content:flex-start; margin-top:10px;">
+              <a class="btn btnGhost" id="mailtoBtn" href="mailto:contact@bezostoken.info">✉️ Email</a>
+              <button class="btn btnGhost" id="btnPrint" type="button">🖨️
+                <span data-i18n="en">Print</span><span data-i18n="ru">Печать</span><span data-i18n="de">Drucken</span><span data-i18n="es">Imprimir</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer" role="contentinfo">
       <div>© <span id="year"></span> BEZOS (BZS). <span data-i18n="en">Not financial advice.</span><span data-i18n="ru">Не финансовый совет.</span><span data-i18n="de">Keine Finanzberatung.</span><span data-i18n="es">No es asesoramiento financiero.</span></div>
       <div class="links">
-        <a href="#" id="siteLink" target="_blank" rel="noreferrer">bezostoken.info</a>
-        <a href="#" id="etherscanFooter" target="_blank" rel="noreferrer">Etherscan</a>
-        <a href="#" id="dexFooter" target="_blank" rel="noreferrer">Dexscreener</a>
-        <a href="#" id="cmcFooter" target="_blank" rel="noreferrer">CoinMarketCap</a>
+        <a href="#" id="siteLink" target="_blank" rel="noreferrer noopener">bezostoken.info</a>
+        <a href="#" id="etherscanFooter" target="_blank" rel="noreferrer noopener">Etherscan</a>
+        <a href="#" id="dexFooter" target="_blank" rel="noreferrer noopener">Dexscreener</a>
+        <a href="#" id="cmcFooter" target="_blank" rel="noreferrer noopener">CoinMarketCap</a>
       </div>
     </div>
   </div>
 
+  <!-- Back to top -->
+  <div class="toTop" id="toTop">
+    <a class="btn btnPrimary" href="#top" aria-label="Back to top">⬆️ Top</a>
+  </div>
+
+  <!-- Whitepaper modal -->
   <div class="modalBack" id="modalBack" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-label="Whitepaper">
       <div class="modalHead">
@@ -664,231 +1160,467 @@
       </div>
       <div class="modalBody">
         <p><strong>TL;DR:</strong>
-          <span data-i18n="en">BZS is an ERC-20 token on Ethereum focused on trust via simple architecture and public infrastructure.</span>
-          <span data-i18n="ru">BZS — ERC-20 токен на Ethereum с фокусом на доверие через простую архитектуру и публичную инфраструктуру.</span>
-          <span data-i18n="de">BZS ist ein ERC-20-Token auf Ethereum mit Fokus auf Vertrauen durch einfache Architektur und öffentliche Infrastruktur.</span>
-          <span data-i18n="es">BZS es un token ERC-20 en Ethereum centrado en la confianza mediante arquitectura simple e infraestructura pública.</span>
+          <span data-i18n="en">BZS is an ERC-20 token focused on verifiable trust and consistent public links.</span>
+          <span data-i18n="ru">BZS — ERC-20 токен с фокусом на проверяемое доверие и единые публичные ссылки.</span>
+          <span data-i18n="de">BZS ist ein ERC-20-Token mit Fokus auf prüfbares Vertrauen und konsistente Links.</span>
+          <span data-i18n="es">BZS es un token ERC-20 centrado en confianza verificable y enlaces consistentes.</span>
+        </p>
+
+        <h4><span data-i18n="en">1) Mission</span><span data-i18n="ru">1) Миссия</span><span data-i18n="de">1) Mission</span><span data-i18n="es">1) Misión</span></h4>
+        <p>
+          <span data-i18n="en">Make verification easy: one contract address, one official domain, consistent social presence.</span>
+          <span data-i18n="ru">Сделать проверку простой: один адрес, один домен, единые соцсети.</span>
+          <span data-i18n="de">Verifikation vereinfachen: eine Adresse, eine Domain, konsistente Socials.</span>
+          <span data-i18n="es">Facilitar la verificación: una dirección, un dominio, redes consistentes.</span>
+        </p>
+
+        <h4><span data-i18n="en">2) Trust principles</span><span data-i18n="ru">2) Принципы доверия</span><span data-i18n="de">2) Vertrauensprinzipien</span><span data-i18n="es">2) Principios de confianza</span></h4>
+        <ul>
+          <li><span data-i18n="en">Same contract address on website, Etherscan, Dexscreener.</span><span data-i18n="ru">Один адрес на сайте, Etherscan, Dexscreener.</span><span data-i18n="de">Gleiche Adresse auf Website, Etherscan, Dexscreener.</span><span data-i18n="es">Misma dirección en web, Etherscan, Dexscreener.</span></li>
+          <li><span data-i18n="en">Only verifiable links & proofs.</span><span data-i18n="ru">Только проверяемые ссылки и доказательства.</span><span data-i18n="de">Nur verifizierbare Links & Nachweise.</span><span data-i18n="es">Solo enlaces y pruebas verificables.</span></li>
+          <li><span data-i18n="en">No unrealistic claims or guaranteed returns.</span><span data-i18n="ru">Без “гарантированной прибыли”.</span><span data-i18n="de">Keine „garantierten Renditen“.</span><span data-i18n="es">Sin “ganancias garantizadas”.</span></li>
+        </ul>
+
+        <h4><span data-i18n="en">3) Token model</span><span data-i18n="ru">3) Модель</span><span data-i18n="de">3) Modell</span><span data-i18n="es">3) Modelo</span></h4>
+        <p>
+          <span data-i18n="en">Standard: <code>ERC-20</code>. Decimals: <code>18</code>. Total supply: <code>1,000,000,000</code>.</span>
+          <span data-i18n="ru">Стандарт: <code>ERC-20</code>. Decimals: <code>18</code>. Supply: <code>1,000,000,000</code>.</span>
+          <span data-i18n="de">Standard: <code>ERC-20</code>. Dezimal: <code>18</code>. Supply: <code>1,000,000,000</code>.</span>
+          <span data-i18n="es">Estándar: <code>ERC-20</code>. Decimales: <code>18</code>. Supply: <code>1,000,000,000</code>.</span>
+        </p>
+
+        <h4><span data-i18n="en">4) Risks</span><span data-i18n="ru">4) Риски</span><span data-i18n="de">4) Risiken</span><span data-i18n="es">4) Riesgos</span></h4>
+        <p>
+          <span data-i18n="en">Crypto is volatile. Never invest more than you can afford to lose. Always verify links.</span>
+          <span data-i18n="ru">Крипто волатильно. Не инвестируйте больше, чем готовы потерять. Проверяйте ссылки.</span>
+          <span data-i18n="de">Krypto ist volatil. Investiere nur, was du verlieren kannst. Links prüfen.</span>
+          <span data-i18n="es">Crypto es volátil. Invierte solo lo que puedas perder. Verifica enlaces.</span>
         </p>
       </div>
     </div>
   </div>
 
-  <div class="toast" id="toast">Copied!</div>
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied!</div>
 
   <script>
-    /************************************************************
-     * ✅ EDIT THESE VALUES
-     ************************************************************/
-    const CONTRACT_ADDRESS = "0xc924a01D48c5c71cFf9977f04df1f8513939D884";
-    const ETHERSCAN_URL = "https://etherscan.io/address/" + CONTRACT_ADDRESS;
-    const UNISWAP_URL   = "https://app.uniswap.org/swap?outputCurrency=" + CONTRACT_ADDRESS;
+  /************************************************************
+   * ✅ EDIT THESE VALUES (only these)
+   ************************************************************/
+  const CFG = {
+    // REQUIRED:
+    CONTRACT_ADDRESS: "PASTE_YOUR_CONTRACT_ADDRESS_HERE",
 
-    const DEXSCREENER_URL = "https://dexscreener.com/ethereum/0xc924a01D48c5c71cFf9977f04df1f8513939D884";
-    const COINMARKETCAP_URL = ""; // set when listed
-    const DEXSCREENER_EMBED_URL = ""; // optional
+    // Auto-generated:
+    get ETHERSCAN_URL(){ return "https://etherscan.io/address/" + this.CONTRACT_ADDRESS; },
+    get UNISWAP_URL(){ return "https://app.uniswap.org/swap?outputCurrency=" + this.CONTRACT_ADDRESS; },
 
-    const SITE_URL = "https://bezostoken.info";
-    const X_URL = "https://x.com/";
-    const TG_URL = "https://t.me/";
-    const DISCORD_URL = "https://discord.gg/";
-    const MEDIUM_URL = "https://medium.com/@";
-    const GITHUB_URL = "https://github.com/";
+    // Put your real Dexscreener URL (pair page):
+    DEXSCREENER_URL: "https://dexscreener.com/ethereum/PASTE_PAIR_OR_TOKEN_HERE",
 
-    /************************************************************
-     * DOM
-     ************************************************************/
-    const toast = document.getElementById("toast");
-    const contractDisplay = document.getElementById("contractDisplay");
+    // Put real CMC URL after listing (otherwise empty):
+    COINMARKETCAP_URL: "",
 
-    const btnEtherscan = document.getElementById("btnEtherscan");
-    const btnUniswap = document.getElementById("btnUniswap");
+    // Optional: Dexscreener embed URL
+    DEXSCREENER_EMBED_URL: "",
 
-    const btnDexNav = document.getElementById("btnDexNav");
-    const btnCmcNav = document.getElementById("btnCmcNav");
+    // Socials (fill properly):
+    SITE_URL: "https://bezostoken.info",
+    X_URL: "https://x.com/",
+    TG_URL: "https://t.me/",
+    DISCORD_URL: "https://discord.gg/",
+    MEDIUM_URL: "https://medium.com/@",
+    GITHUB_URL: "https://github.com/",
 
-    const btnCopy = document.getElementById("btnCopy");
+    // Countdown milestone (UTC). Example: 7 days from now:
+    get MILESTONE_DATE(){ return new Date(Date.now() + 7*24*60*60*1000); }
+  };
 
-    const linkX = document.getElementById("linkX");
-    const linkTG = document.getElementById("linkTG");
-    const linkDiscord = document.getElementById("linkDiscord");
-    const linkMedium = document.getElementById("linkMedium");
-    const linkGitHub = document.getElementById("linkGitHub");
-
-    const siteLink = document.getElementById("siteLink");
-    const etherscanFooter = document.getElementById("etherscanFooter");
-    const dexFooter = document.getElementById("dexFooter");
-    const cmcFooter = document.getElementById("cmcFooter");
-
-    /************************************************************
-     * Helpers
-     ************************************************************/
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.classList.add("show");
-      setTimeout(()=>toast.classList.remove("show"), 1400);
+  /************************************************************
+   * i18n dictionary for dynamic meta + messages
+   ************************************************************/
+  const I18N = {
+    en: {
+      title: "BEZOS (BZS) — ERC-20 on Ethereum",
+      desc: "BEZOS (BZS) is an ERC-20 token on Ethereum with fixed supply, verifiable contract, and a trust-first approach.",
+      copied: "Copied ✅",
+      setContract: "⚠️ Set CONTRACT_ADDRESS in the code",
+      noMM: "MetaMask not found",
+      cancelled: "Cancelled",
+      connected: "Connected ✅",
+      wrongNet: "Switch to Ethereum Mainnet",
+      cmcSoon: "CMC link: coming soon",
+      shareOk: "Share sheet opened",
+      shareFail: "Copied site link ✅"
+    },
+    ru: {
+      title: "BEZOS (BZS) — ERC-20 на Ethereum",
+      desc: "BEZOS (BZS) — ERC-20 токен в сети Ethereum: фиксированное предложение, проверяемый контракт и подход, основанный на доверии.",
+      copied: "Скопировано ✅",
+      setContract: "⚠️ Укажи CONTRACT_ADDRESS в коде",
+      noMM: "MetaMask не найден",
+      cancelled: "Отменено",
+      connected: "Подключено ✅",
+      wrongNet: "Переключитесь на Ethereum Mainnet",
+      cmcSoon: "Ссылка CMC: скоро",
+      shareOk: "Открыто меню “Поделиться”",
+      shareFail: "Ссылка скопирована ✅"
+    },
+    de: {
+      title: "BEZOS (BZS) — ERC-20 auf Ethereum",
+      desc: "BEZOS (BZS) ist ein ERC-20-Token auf Ethereum mit fixem Supply, verifizierbarem Vertrag und Trust-First-Ansatz.",
+      copied: "Kopiert ✅",
+      setContract: "⚠️ Setze CONTRACT_ADDRESS im Code",
+      noMM: "MetaMask nicht gefunden",
+      cancelled: "Abgebrochen",
+      connected: "Verbunden ✅",
+      wrongNet: "Bitte auf Ethereum Mainnet wechseln",
+      cmcSoon: "CMC-Link: bald",
+      shareOk: "Teilen-Menü geöffnet",
+      shareFail: "Link kopiert ✅"
+    },
+    es: {
+      title: "BEZOS (BZS) — ERC-20 en Ethereum",
+      desc: "BEZOS (BZS) es un token ERC-20 en Ethereum con supply fijo, contrato verificable y enfoque de confianza.",
+      copied: "Copiado ✅",
+      setContract: "⚠️ Define CONTRACT_ADDRESS en el código",
+      noMM: "MetaMask no encontrado",
+      cancelled: "Cancelado",
+      connected: "Conectado ✅",
+      wrongNet: "Cambia a Ethereum Mainnet",
+      cmcSoon: "Link CMC: pronto",
+      shareOk: "Menú de compartir abierto",
+      shareFail: "Enlace copiado ✅"
     }
-    async function copyText(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        showToast(msg("copied"));
-      }catch(e){
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        ta.remove();
-        showToast(msg("copied"));
-      }
+  };
+
+  /************************************************************
+   * Language selection (EN primary, but auto-detect if no saved)
+   ************************************************************/
+  const LANG_KEYS = ["en","ru","de","es"];
+  function detectLang(){
+    const saved = localStorage.getItem("bzs_lang");
+    if (saved && LANG_KEYS.includes(saved)) return saved;
+
+    // auto-detect by browser language:
+    const nav = (navigator.language || "en").toLowerCase();
+    if (nav.startsWith("ru")) return "ru";
+    if (nav.startsWith("de")) return "de";
+    if (nav.startsWith("es")) return "es";
+    return "en"; // default
+  }
+
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    localStorage.setItem("bzs_lang", lang);
+
+    // toggle active buttons
+    const map = { en:"langEn", ru:"langRu", de:"langDe", es:"langEs" };
+    for (const k of LANG_KEYS){
+      const el = document.getElementById(map[k]);
+      if (el) el.classList.toggle("active", k===lang);
     }
 
-    function msg(key){
-      const lang = document.documentElement.lang || "en";
-      const dict = {
-        copied: { en:"Copied ✅", ru:"Скопировано ✅", de:"Kopiert ✅", es:"Copiado ✅" },
-        setContract: { en:"0xc924a01D48c5c71cFf9977f04df1f8513939D884", ru:"0xc924a01D48c5c71cFf9977f04df1f8513939D884", de:"0xc924a01D48c5c71cFf9977f04df1f8513939D884", es:"0xc924a01D48c5c71cFf9977f04df1f8513939D884" },
-        noMM: { en:"MetaMask not found", ru:"MetaMask не найден", de:"MetaMask nicht gefunden", es:"MetaMask no encontrado" },
-        cancelled: { en:"Cancelled", ru:"Отменено", de:"Abgebrochen", es:"Cancelado" },
-        connected: { en:"Connected ✅", ru:"Подключено ✅", de:"Verbunden ✅", es:"Conectado ✅" },
-        cmcSoon: { en:"CMC link: coming soon", ru:"Ссылка CMC: скоро", de:"CMC-Link: bald", es:"Link CMC: pronto" }
+    // Update meta title/description + OG/Twitter + JSON-LD
+    const t = I18N[lang].title;
+    const d = I18N[lang].desc;
+
+    document.title = t;
+    const md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute("content", d);
+
+    const ogt = document.querySelector('meta[property="og:title"]');
+    const ogd = document.querySelector('meta[property="og:description"]');
+    const twt = document.querySelector('meta[name="twitter:title"]');
+    const twd = document.querySelector('meta[name="twitter:description"]');
+    if (ogt) ogt.setAttribute("content", "BEZOS (BZS)");
+    if (ogd) ogd.setAttribute("content", d);
+    if (twt) twt.setAttribute("content", "BEZOS (BZS)");
+    if (twd) twd.setAttribute("content", d);
+
+    // Update JSON-LD
+    const ld = document.getElementById("jsonld");
+    if (ld){
+      const obj = {
+        "@context":"https://schema.org",
+        "@type":"WebSite",
+        "name":"BEZOS (BZS)",
+        "url": CFG.SITE_URL.endsWith("/") ? CFG.SITE_URL : (CFG.SITE_URL + "/"),
+        "description": d,
+        "inLanguage": lang
       };
-      return (dict[key] && dict[key][lang]) ? dict[key][lang] : (dict[key]?.en || "");
+      ld.textContent = JSON.stringify(obj);
     }
+  }
 
-    /************************************************************
-     * Language toggle (EN default)
-     ************************************************************/
-    const btnLangEn = document.getElementById("langEn");
-    const btnLangRu = document.getElementById("langRu");
-    const btnLangDe = document.getElementById("langDe");
-    const btnLangEs = document.getElementById("langEs");
-
-    function setLang(lang){
-      document.documentElement.lang = lang;
-      localStorage.setItem("bzs_lang", lang);
-
-      btnLangEn.classList.toggle("active", lang === "en");
-      btnLangRu.classList.toggle("active", lang === "ru");
-      btnLangDe.classList.toggle("active", lang === "de");
-      btnLangEs.classList.toggle("active", lang === "es");
+  /************************************************************
+   * Helpers
+   ************************************************************/
+  const toast = document.getElementById("toast");
+  function msg(key){
+    const lang = document.documentElement.lang || "en";
+    return (I18N[lang] && I18N[lang][key]) ? I18N[lang][key] : (I18N.en[key] || "");
+  }
+  function showToast(text){
+    toast.textContent = text;
+    toast.classList.add("show");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(()=>toast.classList.remove("show"), 1400);
+  }
+  async function copyText(text){
+    try{
+      await navigator.clipboard.writeText(text);
+      showToast(msg("copied"));
+    }catch{
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+      showToast(msg("copied"));
     }
-    btnLangEn.addEventListener("click", ()=> setLang("en"));
-    btnLangRu.addEventListener("click", ()=> setLang("ru"));
-    btnLangDe.addEventListener("click", ()=> setLang("de"));
-    btnLangEs.addEventListener("click", ()=> setLang("es"));
+  }
 
-    // EN is default if nothing stored:
-    setLang(localStorage.getItem("bzs_lang") || "en");
+  /************************************************************
+   * Init: language buttons
+   ************************************************************/
+  document.getElementById("langEn").addEventListener("click", ()=> setLang("en"));
+  document.getElementById("langRu").addEventListener("click", ()=> setLang("ru"));
+  document.getElementById("langDe").addEventListener("click", ()=> setLang("de"));
+  document.getElementById("langEs").addEventListener("click", ()=> setLang("es"));
+  setLang(detectLang());
 
-    /************************************************************
-     * Init
-     ************************************************************/
-    document.getElementById("year").textContent = new Date().getFullYear();
+  /************************************************************
+   * Init: links + contract
+   ************************************************************/
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-    if (CONTRACT_ADDRESS.includes("0xc924a01D48c5c71cFf9977f04df1f8513939D884")){
-      contractDisplay.textContent = msg("setContract");
-      btnEtherscan.href = "#";
-      btnUniswap.href = "#";
+  const contractDisplay = document.getElementById("contractDisplay");
+  const btnEtherscan = document.getElementById("btnEtherscan");
+  const btnEtherscan2 = document.getElementById("btnEtherscan2");
+  const btnEtherscan3 = document.getElementById("btnEtherscan3");
+  const btnEtherscanFooter = document.getElementById("etherscanFooter");
+
+  const btnUniswap = document.getElementById("btnUniswap");
+
+  const btnDexNav = document.getElementById("btnDexNav");
+  const btnDex = document.getElementById("btnDex");
+  const btnDex2 = document.getElementById("btnDex2");
+  const btnDex3 = document.getElementById("btnDex3");
+  const dexFooter = document.getElementById("dexFooter");
+
+  const btnCmcNav = document.getElementById("btnCmcNav");
+  const btnCmc = document.getElementById("btnCmc");
+  const btnCmc2 = document.getElementById("btnCmc2");
+  const cmcFooter = document.getElementById("cmcFooter");
+
+  const siteLink = document.getElementById("siteLink");
+
+  // socials
+  document.getElementById("linkX").href = CFG.X_URL;
+  document.getElementById("linkTG").href = CFG.TG_URL;
+  document.getElementById("linkDiscord").href = CFG.DISCORD_URL;
+  document.getElementById("linkMedium").href = CFG.MEDIUM_URL;
+  document.getElementById("linkGitHub").href = CFG.GITHUB_URL;
+
+  siteLink.href = CFG.SITE_URL;
+
+  // Dex links
+  btnDexNav.href = CFG.DEXSCREENER_URL;
+  btnDex.href = CFG.DEXSCREENER_URL;
+  btnDex2.href = CFG.DEXSCREENER_URL;
+  btnDex3.href = CFG.DEXSCREENER_URL;
+  dexFooter.href = CFG.DEXSCREENER_URL;
+
+  // CMC links
+  function wireCmc(el){
+    if (!el) return;
+    if (CFG.COINMARKETCAP_URL && CFG.COINMARKETCAP_URL.startsWith("http")){
+      el.href = CFG.COINMARKETCAP_URL;
     } else {
-      contractDisplay.textContent = CONTRACT_ADDRESS;
-      btnEtherscan.href = ETHERSCAN_URL;
-      btnUniswap.href = UNISWAP_URL;
-      etherscanFooter.href = ETHERSCAN_URL;
+      el.href = "#";
+      el.addEventListener("click", (e)=>{ e.preventDefault(); showToast(msg("cmcSoon")); }, { passive:false });
     }
+  }
+  wireCmc(btnCmcNav); wireCmc(btnCmc); wireCmc(btnCmc2); wireCmc(cmcFooter);
 
-    btnDexNav.href = DEXSCREENER_URL;
-    dexFooter.href = DEXSCREENER_URL;
+  // Contract links
+  const isPlaceholder = CFG.CONTRACT_ADDRESS.includes("PASTE_") || CFG.CONTRACT_ADDRESS.length < 20;
 
-    if (COINMARKETCAP_URL && COINMARKETCAP_URL.startsWith("http")){
-      btnCmcNav.href = COINMARKETCAP_URL;
-      cmcFooter.href = COINMARKETCAP_URL;
-    } else {
-      btnCmcNav.href = "#";
-      cmcFooter.href = "#";
-      btnCmcNav.addEventListener("click", (e)=>{ e.preventDefault(); showToast(msg("cmcSoon")); });
-      cmcFooter.addEventListener("click", (e)=>{ e.preventDefault(); showToast(msg("cmcSoon")); });
+  if (isPlaceholder){
+    contractDisplay.textContent = msg("setContract");
+    btnEtherscan.href = "#"; btnEtherscan2.href="#"; btnEtherscan3.href="#"; btnEtherscanFooter.href="#";
+    btnUniswap.href = "#";
+  } else {
+    contractDisplay.textContent = CFG.CONTRACT_ADDRESS;
+    btnEtherscan.href = CFG.ETHERSCAN_URL;
+    btnEtherscan2.href = CFG.ETHERSCAN_URL;
+    btnEtherscan3.href = CFG.ETHERSCAN_URL;
+    btnEtherscanFooter.href = CFG.ETHERSCAN_URL;
+    btnUniswap.href = CFG.UNISWAP_URL;
+  }
+
+  // Copy buttons
+  document.getElementById("btnCopy").addEventListener("click", ()=> copyText(CFG.CONTRACT_ADDRESS));
+  document.getElementById("btnCopy2").addEventListener("click", ()=> copyText(CFG.CONTRACT_ADDRESS));
+
+  // Share button
+  document.getElementById("btnShare").addEventListener("click", async ()=>{
+    const url = CFG.SITE_URL;
+    try{
+      if (navigator.share){
+        await navigator.share({ title: "BEZOS (BZS)", text: "Official website", url });
+        showToast(msg("shareOk"));
+      } else {
+        await copyText(url);
+        showToast(msg("shareFail"));
+      }
+    }catch{
+      await copyText(url);
+      showToast(msg("shareFail"));
     }
+  });
 
-    linkX.href = X_URL; linkTG.href = TG_URL; linkDiscord.href = DISCORD_URL;
-    linkMedium.href = MEDIUM_URL; linkGitHub.href = GITHUB_URL;
+  // Print
+  document.getElementById("btnPrint").addEventListener("click", ()=> window.print());
 
-    siteLink.href = SITE_URL;
+  // Dex embed
+  if (CFG.DEXSCREENER_EMBED_URL && CFG.DEXSCREENER_EMBED_URL.startsWith("http")){
+    const el = document.getElementById("dexEmbed");
+    el.innerHTML = `<iframe src="${CFG.DEXSCREENER_EMBED_URL}" loading="lazy" referrerpolicy="no-referrer"></iframe>`;
+  }
 
-    btnCopy.addEventListener("click", ()=> copyText(CONTRACT_ADDRESS));
+  /************************************************************
+   * Whitepaper modal (accessible)
+   ************************************************************/
+  const modalBack = document.getElementById("modalBack");
+  const btnWhitepaper = document.getElementById("btnWhitepaper");
+  const closeModal = document.getElementById("closeModal");
+  let lastFocus = null;
 
-    const modalBack = document.getElementById("modalBack");
-    const btnWhitepaper = document.getElementById("btnWhitepaper");
-    const closeModal = document.getElementById("closeModal");
-    btnWhitepaper.addEventListener("click", ()=>{ modalBack.style.display="flex"; });
-    closeModal.addEventListener("click", ()=>{ modalBack.style.display="none"; });
-    modalBack.addEventListener("click", (e)=>{ if(e.target===modalBack) modalBack.style.display="none"; });
+  function openModal(){
+    lastFocus = document.activeElement;
+    modalBack.style.display = "flex";
+    modalBack.setAttribute("aria-hidden","false");
+    closeModal.focus();
+  }
+  function closeModalFn(){
+    modalBack.style.display = "none";
+    modalBack.setAttribute("aria-hidden","true");
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
 
-    const btnConnect = document.getElementById("btnConnect");
-    btnConnect.addEventListener("click", async ()=>{
-      if (!window.ethereum){
-        showToast(msg("noMM"));
+  btnWhitepaper.addEventListener("click", openModal);
+  closeModal.addEventListener("click", closeModalFn);
+  modalBack.addEventListener("click", (e)=>{ if (e.target===modalBack) closeModalFn(); });
+  document.addEventListener("keydown", (e)=>{
+    if (e.key==="Escape" && modalBack.style.display==="flex") closeModalFn();
+  });
+
+  /************************************************************
+   * Wallet connect (MetaMask)
+   ************************************************************/
+  const btnConnect = document.getElementById("btnConnect");
+  btnConnect.addEventListener("click", async ()=>{
+    if (!window.ethereum){
+      showToast(msg("noMM"));
+      return;
+    }
+    try{
+      // Ask for accounts
+      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+      const a = accounts?.[0] || "";
+      if (!a){
+        showToast(msg("cancelled"));
         return;
       }
-      try{
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-        const a = accounts?.[0] || "";
-        btnConnect.innerHTML = "🦊 " + (a ? ("Connected: " + a.slice(0,6) + "…" + a.slice(-4)) : "Connected");
-        showToast(msg("connected"));
-      }catch(err){
-        showToast(msg("cancelled"));
+
+      // Check chain (Ethereum mainnet = 0x1)
+      const chainId = await window.ethereum.request({ method: "eth_chainId" });
+      if (chainId !== "0x1"){
+        showToast(msg("wrongNet"));
       }
-    });
 
-    // Countdown (example: 7 days)
-    const target = new Date(Date.now() + 7*24*60*60*1000);
-    const cd = document.getElementById("countdown");
-    function tick(){
-      const now = new Date();
-      let ms = target - now;
-      if (ms < 0) ms = 0;
-      const s = Math.floor(ms/1000);
-      const d = Math.floor(s/86400);
-      const h = Math.floor((s%86400)/3600);
-      const m = Math.floor((s%3600)/60);
-      const ss = s%60;
-
-      const lang = document.documentElement.lang || "en";
-      const labels = {
-        en: ["Days","Hours","Minutes","Sec"],
-        ru: ["Дни","Часы","Мин","Сек"],
-        de: ["Tage","Std","Min","Sek"],
-        es: ["Días","Horas","Min","Seg"]
-      }[lang] || ["Days","Hours","Minutes","Sec"];
-
-      cd.innerHTML = `
-        <div class="countBox"><div class="n">${d}</div><div class="l">${labels[0]}</div></div>
-        <div class="countBox"><div class="n">${h}</div><div class="l">${labels[1]}</div></div>
-        <div class="countBox"><div class="n">${m}</div><div class="l">${labels[2]}</div></div>
-        <div class="countBox"><div class="n">${ss}</div><div class="l">${labels[3]}</div></div>
-      `;
+      btnConnect.textContent = "🦊 " + a.slice(0,6) + "…" + a.slice(-4);
+      showToast(msg("connected"));
+    }catch{
+      showToast(msg("cancelled"));
     }
-    tick(); setInterval(tick, 1000);
+  });
 
-    // Particles (lightweight)
+  /************************************************************
+   * Countdown
+   ************************************************************/
+  const cd = document.getElementById("countdown");
+  const LABELS = {
+    en:["Days","Hours","Minutes","Sec"],
+    ru:["Дни","Часы","Мин","Сек"],
+    de:["Tage","Std","Min","Sek"],
+    es:["Días","Horas","Min","Seg"]
+  };
+
+  function tick(){
+    const target = CFG.MILESTONE_DATE;
+    const now = new Date();
+    let ms = target - now;
+    if (ms < 0) ms = 0;
+
+    const s = Math.floor(ms/1000);
+    const d = Math.floor(s/86400);
+    const h = Math.floor((s%86400)/3600);
+    const m = Math.floor((s%3600)/60);
+    const ss = s%60;
+
+    const lang = document.documentElement.lang || "en";
+    const L = LABELS[lang] || LABELS.en;
+
+    cd.innerHTML = `
+      <div class="countBox"><div class="n">${d}</div><div class="l">${L[0]}</div></div>
+      <div class="countBox"><div class="n">${h}</div><div class="l">${L[1]}</div></div>
+      <div class="countBox"><div class="n">${m}</div><div class="l">${L[2]}</div></div>
+      <div class="countBox"><div class="n">${ss}</div><div class="l">${L[3]}</div></div>
+    `;
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /************************************************************
+   * Back to top visibility
+   ************************************************************/
+  const toTop = document.getElementById("toTop");
+  function onScroll(){
+    const y = window.scrollY || document.documentElement.scrollTop;
+    toTop.style.display = y > 700 ? "block" : "none";
+  }
+  window.addEventListener("scroll", onScroll, { passive:true });
+  onScroll();
+
+  /************************************************************
+   * Particles (lightweight; disabled on reduced motion)
+   ************************************************************/
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduceMotion){
     const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
-    let w, h, particles;
+    const ctx = canvas.getContext("2d", { alpha:true });
+    let w=0, h=0, particles=[];
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
 
     function resize(){
-      w = canvas.width = window.innerWidth * devicePixelRatio;
-      h = canvas.height = window.innerHeight * devicePixelRatio;
+      w = canvas.width = Math.floor(window.innerWidth * DPR);
+      h = canvas.height = Math.floor(window.innerHeight * DPR);
       canvas.style.width = window.innerWidth + "px";
       canvas.style.height = window.innerHeight + "px";
+      init();
     }
     function rand(a,b){ return a + Math.random()*(b-a); }
 
-    function initParticles(){
-      const count = Math.min(120, Math.floor(window.innerWidth/12));
+    function init(){
+      const count = Math.min(120, Math.max(50, Math.floor(window.innerWidth/14)));
       particles = Array.from({length: count}).map(()=>({
         x: rand(0,w), y: rand(0,h),
-        vx: rand(-0.18,0.18), vy: rand(-0.18,0.18),
-        r: rand(1.2, 2.4) * devicePixelRatio,
-        a: rand(0.15,0.55)
+        vx: rand(-0.18,0.18) * DPR, vy: rand(-0.18,0.18) * DPR,
+        r: rand(1.1, 2.3) * DPR,
+        a: rand(0.12,0.50)
       }));
     }
 
@@ -896,8 +1628,8 @@
       ctx.clearRect(0,0,w,h);
 
       for (const p of particles){
-        p.x += p.vx * devicePixelRatio;
-        p.y += p.vy * devicePixelRatio;
+        p.x += p.vx;
+        p.y += p.vy;
         if (p.x<0) p.x=w; if (p.x>w) p.x=0;
         if (p.y<0) p.y=h; if (p.y>h) p.y=0;
 
@@ -907,16 +1639,17 @@
         ctx.fill();
       }
 
+      // connect close points
+      const max = 160 * DPR;
       for (let i=0;i<particles.length;i++){
         for (let j=i+1;j<particles.length;j++){
           const a = particles[i], b = particles[j];
           const dx = a.x - b.x, dy = a.y - b.y;
           const dist = Math.hypot(dx,dy);
-          const max = 160 * devicePixelRatio;
           if (dist < max){
             const alpha = (1 - dist/max) * 0.10;
             ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
-            ctx.lineWidth = 1 * devicePixelRatio;
+            ctx.lineWidth = 1 * DPR;
             ctx.beginPath();
             ctx.moveTo(a.x,a.y);
             ctx.lineTo(b.x,b.y);
@@ -924,13 +1657,17 @@
           }
         }
       }
-
       requestAnimationFrame(step);
     }
 
-    resize(); initParticles(); step();
-    window.addEventListener("resize", ()=>{ resize(); initParticles(); });
+    window.addEventListener("resize", resize, { passive:true });
+    resize();
+    step();
+  } else {
+    // hide canvas if reduced motion
+    const c = document.getElementById("particles");
+    c.style.display = "none";
+  }
   </script>
 </body>
 </html>
-
