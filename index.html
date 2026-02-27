@@ -1,16 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="bg">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>BEZOS (BZS) — ERC-20 on Ethereum</title>
-  <meta name="description" content="BEZOS (BZS) is a decentralized ERC-20 token on Ethereum. Fixed supply, no minting, immutable and verified smart contract." />
+  <meta name="description" content="BEZOS (BZS) е ERC-20 токен на Ethereum с фиксирано предлагане, прозрачен контракт и фокус върху доверие, общност и дългосрочна визия." />
 
-  <!-- Open Graph (за preview в X/Telegram) -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <!-- OpenGraph (preview за X/Telegram) -->
   <meta property="og:title" content="BEZOS (BZS)" />
-  <meta property="og:description" content="Decentralized ERC-20 token on Ethereum. Fixed supply. No minting. Verified & immutable." />
+  <meta property="og:description" content="ERC-20 token on Ethereum. Fixed supply. Verified contract. Long-term vision." />
   <meta property="og:type" content="website" />
-  <!-- Като имаш лого, сложи URL към него -->
+  <!-- По желание: качи og.png в repo root и разкоментирай -->
   <!-- <meta property="og:image" content="https://bezostoken.info/og.png" /> -->
 
   <style>
@@ -18,101 +21,134 @@
       --bg0:#06070a;
       --bg1:#0b1020;
       --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
-      --text:#e9eefc;
-      --muted: rgba(233,238,252,.7);
-      --muted2: rgba(233,238,252,.55);
-      --line: rgba(255,255,255,.10);
-
+      --card2: rgba(255,255,255,.09);
+      --line: rgba(255,255,255,.12);
+      --txt: #eef3ff;
+      --muted: rgba(238,243,255,.72);
+      --muted2: rgba(238,243,255,.55);
       --a:#00D4FF;
       --b:#7C3AED;
       --c:#22C55E;
-      --warn:#F59E0B;
-      --shadow: 0 20px 60px rgba(0,0,0,.55);
-      --radius: 18px;
+      --w:#F59E0B;
+      --r:#EF4444;
+      --shadow: 0 24px 80px rgba(0,0,0,.55);
+      --radius: 20px;
+      --radius2: 16px;
+      --max: 1120px;
     }
-
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      color:var(--text);
+      color:var(--txt);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 700px at 20% 10%, rgba(124,58,237,.28), transparent 55%),
-                  radial-gradient(900px 600px at 80% 20%, rgba(0,212,255,.22), transparent 55%),
-                  radial-gradient(900px 700px at 50% 100%, rgba(34,197,94,.12), transparent 60%),
-                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(124,58,237,.28), transparent 55%),
+        radial-gradient(900px 600px at 80% 20%, rgba(0,212,255,.22), transparent 55%),
+        radial-gradient(900px 700px at 50% 100%, rgba(34,197,94,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
 
-    /* animated grid */
+    /* Particles canvas */
+    #particles{
+      position:fixed; inset:0;
+      z-index:-2;
+      opacity:.7;
+      pointer-events:none;
+    }
+
+    /* Subtle grid overlay */
     .grid{
       position:fixed; inset:-2px;
+      z-index:-1;
       background-image:
         linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(closest-side at 50% 15%, rgba(0,0,0,.85), transparent);
-      opacity:.25;
+      background-size: 52px 52px;
+      mask-image: radial-gradient(closest-side at 50% 15%, rgba(0,0,0,.90), transparent);
+      opacity:.22;
       pointer-events:none;
-      transform: translateZ(0);
       animation: drift 16s ease-in-out infinite;
     }
-    @keyframes drift{
-      0%,100%{ transform: translate3d(0,0,0); opacity:.22; }
-      50%{ transform: translate3d(0,-12px,0); opacity:.28; }
-    }
+    @keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
     .wrap{
-      width:min(1100px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 28px 0 70px;
-      position:relative;
+      width:min(var(--max), calc(100% - 40px));
+      margin:0 auto;
+      padding: 22px 0 80px;
     }
 
-    .topbar{
+    /* Top nav */
+    .nav{
       display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
-      padding: 10px 0 18px;
+      gap:12px; padding: 8px 0 18px;
     }
     .brand{
       display:flex; align-items:center; gap:12px;
     }
-    .logo{
-      width:40px; height:40px;
-      border-radius: 14px;
-      background: radial-gradient(circle at 25% 25%, rgba(255,255,255,.28), transparent 55%),
+    .brandLogo{
+      width:44px; height:44px; border-radius:14px;
+      background: radial-gradient(circle at 25% 25%, rgba(255,255,255,.25), transparent 55%),
                   linear-gradient(135deg, rgba(0,212,255,.95), rgba(124,58,237,.95));
-      box-shadow: 0 12px 30px rgba(0,212,255,.15);
-      border: 1px solid rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 12px 30px rgba(0,212,255,.14);
     }
-    .brand h1{
+    .brandTitle{
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .brandTitle .t{
+      font-size: 13px; letter-spacing:.18em; text-transform:uppercase;
+      color: rgba(238,243,255,.88);
       margin:0;
-      font-size: 14px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color: rgba(233,238,252,.85);
     }
     .pill{
-      font-size: 12px;
-      color: rgba(233,238,252,.75);
-      border: 1px solid rgba(255,255,255,.12);
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px; border-radius:999px;
       background: rgba(255,255,255,.04);
-      padding: 8px 12px;
-      border-radius: 999px;
-      display:flex; align-items:center; gap:8px;
-      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(238,243,255,.72);
+      font-size: 12px;
+      backdrop-filter: blur(10px);
     }
-    .dot{
-      width:7px; height:7px; border-radius:999px;
-      background: var(--c);
-      box-shadow: 0 0 18px rgba(34,197,94,.55);
+    .dot{width:7px;height:7px;border-radius:999px;background:var(--c);box-shadow:0 0 18px rgba(34,197,94,.55)}
+    .navBtns{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+
+    .btn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--txt);
+      padding: 10px 14px;
+      border-radius: 14px;
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+      font-weight: 650;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      backdrop-filter: blur(10px);
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px); border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.10)}
+    .btnPrimary{
+      border-color: rgba(0,212,255,.28);
+      background: linear-gradient(135deg, rgba(0,212,255,.22), rgba(124,58,237,.18));
+    }
+    .btnPrimary:hover{border-color: rgba(0,212,255,.42)}
+    .btnWarn{
+      border-color: rgba(245,158,11,.28);
+      background: linear-gradient(135deg, rgba(245,158,11,.18), rgba(0,0,0,0));
+    }
+    .btnGhost{
+      background: transparent;
+      border-color: rgba(255,255,255,.12);
     }
 
+    /* Hero */
     .hero{
       margin-top: 10px;
       border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -121,22 +157,23 @@
     .hero::before{
       content:"";
       position:absolute; inset:-2px;
-      background: radial-gradient(900px 420px at 20% 0%, rgba(0,212,255,.25), transparent 60%),
-                  radial-gradient(900px 500px at 90% 20%, rgba(124,58,237,.22), transparent 60%);
-      opacity:.9;
+      background:
+        radial-gradient(900px 420px at 20% 0%, rgba(0,212,255,.22), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(124,58,237,.20), transparent 60%);
+      opacity:.95;
       pointer-events:none;
     }
-
     .heroInner{
       position:relative;
-      padding: 42px 34px 30px;
+      padding: 40px 34px 28px;
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 22px;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
     }
-
-    @media (max-width: 900px){
-      .heroInner{ grid-template-columns: 1fr; padding: 32px 18px 22px; }
+    @media (max-width: 920px){
+      .heroInner{ grid-template-columns:1fr; padding: 30px 18px 22px; }
+      .nav{flex-direction:column; align-items:flex-start}
+      .navBtns{justify-content:flex-start}
     }
 
     .kicker{
@@ -145,87 +182,59 @@
       border-radius: 999px;
       background: rgba(0,212,255,.10);
       border: 1px solid rgba(0,212,255,.22);
-      color: rgba(233,238,252,.9);
+      color: rgba(238,243,255,.90);
       font-size: 12px;
       letter-spacing:.06em;
       width: fit-content;
     }
-    .kicker .spark{
+    .spark{
       width: 10px; height: 10px; border-radius: 4px;
       background: linear-gradient(135deg, var(--a), var(--b));
       box-shadow: 0 0 16px rgba(0,212,255,.35);
     }
-
     .title{
       margin: 14px 0 10px;
-      font-size: clamp(36px, 4.2vw, 54px);
+      font-size: clamp(36px, 4.2vw, 56px);
       line-height: 1.02;
       letter-spacing: -0.02em;
     }
     .subtitle{
-      margin: 0 0 18px;
+      margin: 0 0 16px;
       color: var(--muted);
       font-size: 16px;
       line-height: 1.55;
-      max-width: 62ch;
+      max-width: 66ch;
     }
 
-    .actions{
-      display:flex; flex-wrap:wrap; gap:12px;
-      margin-top: 14px;
+    .heroLogo{
+      width: 118px;
+      height: auto;
+      filter: drop-shadow(0 0 18px rgba(0,212,255,.15));
+      animation: glow 2.8s ease-in-out infinite alternate;
     }
-    .btn{
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      padding: 11px 14px;
-      border-radius: 12px;
-      text-decoration:none;
-      display:inline-flex; gap:10px; align-items:center;
-      font-weight: 600;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      backdrop-filter: blur(10px);
-      cursor:pointer;
-      user-select:none;
-    }
-    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.09); }
-    .btnPrimary{
-      border-color: rgba(0,212,255,.28);
-      background: linear-gradient(135deg, rgba(0,212,255,.22), rgba(124,58,237,.18));
-    }
-    .btnPrimary:hover{ border-color: rgba(0,212,255,.42); }
-    .btnWarn{
-      border-color: rgba(245,158,11,.28);
-      background: linear-gradient(135deg, rgba(245,158,11,.18), rgba(0,0,0,.0));
-    }
-    .icon{
-      width: 18px; height: 18px; display:inline-block;
-      opacity:.9;
+    @keyframes glow{
+      from{ filter: drop-shadow(0 0 10px rgba(0,212,255,.20)); }
+      to{ filter: drop-shadow(0 0 22px rgba(124,58,237,.22)); }
     }
 
+    /* Cards */
     .card{
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(10,12,18,.42);
-      border-radius: 16px;
+      border-radius: var(--radius2);
       padding: 18px;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
-
     .label{
       color: var(--muted2);
       font-size: 12px;
       letter-spacing: .14em;
       text-transform: uppercase;
     }
-
-    .addr{
-      margin-top: 10px;
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-    }
     .mono{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 13px;
-      color: rgba(233,238,252,.9);
+      color: rgba(238,243,255,.92);
       padding: 10px 12px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,.12);
@@ -236,44 +245,41 @@
       max-width: 100%;
     }
 
-    .grid2{
+    .grid3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 18px;
+      gap: 12px;
+      margin-top: 14px;
     }
-    @media (max-width: 900px){ .grid2{ grid-template-columns: 1fr; } }
-
+    @media (max-width: 920px){ .grid3{ grid-template-columns:1fr; } }
     .stat{
       padding: 16px;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,.10);
       background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      text-align:left;
     }
     .stat .k{ color: var(--muted2); font-size: 12px; letter-spacing:.14em; text-transform:uppercase; }
-    .stat .v{ margin-top: 10px; font-size: 18px; font-weight: 700; }
+    .stat .v{ margin-top: 10px; font-size: 18px; font-weight: 780; }
 
-    .sections{
+    /* Sections */
+    .section{
       margin-top: 18px;
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 12px;
     }
-    @media (max-width: 900px){ .sections{ grid-template-columns: 1fr; } }
+    @media (max-width: 920px){ .section{ grid-template-columns:1fr; } }
 
-    ul.clean{
-      margin: 10px 0 0;
-      padding: 0;
-      list-style:none;
-    }
-    ul.clean li{
+    .list{margin:10px 0 0; padding:0; list-style:none}
+    .list li{
       display:flex; gap:10px; align-items:flex-start;
       padding: 10px 0;
       border-top: 1px dashed rgba(255,255,255,.10);
       color: var(--muted);
       line-height: 1.45;
     }
-    ul.clean li:first-child{ border-top:none; padding-top: 2px; }
+    .list li:first-child{border-top:none; padding-top: 2px;}
     .check{
       width: 18px; height: 18px;
       border-radius: 6px;
@@ -284,138 +290,464 @@
       flex: 0 0 auto;
     }
 
-    .foot{
-      margin-top: 22px;
+    /* Extra sections */
+    .panel{
+      margin-top: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+      overflow:hidden;
+    }
+    .panelHead{
+      padding: 18px 18px 12px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .panelHead h3{margin:0; font-size: 16px; letter-spacing:.02em;}
+    .panelBody{padding: 16px 18px 18px;}
+    .cols{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 920px){ .cols{ grid-template-columns:1fr; } }
+
+    .small{color: var(--muted2); font-size: 12px; line-height: 1.45;}
+    .muted{color: var(--muted);}
+
+    /* Countdown */
+    .count{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 10px;
+    }
+    .countBox{
+      min-width: 92px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      text-align:center;
+    }
+    .countBox .n{font-weight:900; font-size: 20px;}
+    .countBox .l{color: var(--muted2); font-size: 11px; letter-spacing:.12em; text-transform:uppercase; margin-top:4px;}
+
+    /* Modal (Whitepaper) */
+    .modalBack{
+      position: fixed; inset:0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:center; justify-content:center;
+      padding: 20px;
+      z-index: 60;
+    }
+    .modal{
+      width: min(860px, 100%);
+      background: rgba(10,12,18,.92);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      overflow:hidden;
+    }
+    .modalHead{
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .modalHead strong{letter-spacing:.06em}
+    .xbtn{
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: var(--txt);
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor:pointer;
+    }
+    .modalBody{
+      padding: 14px 16px 18px;
+      text-align:left;
+      color: var(--muted);
+      line-height: 1.65;
+      max-height: 70vh;
+      overflow:auto;
+    }
+    .modalBody h4{color: var(--txt); margin: 14px 0 8px;}
+    .modalBody code{background: rgba(255,255,255,.06); padding: 2px 6px; border-radius: 8px; border:1px solid rgba(255,255,255,.10)}
+
+    /* Dexscreener embed */
+    .embed{
+      width:100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+    }
+    .embed iframe{width:100%; height:100%; border:0;}
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,12,18,.88);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: rgba(238,243,255,.92);
+      font-size: 13px;
+      display:none;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      z-index: 70;
+    }
+    .toast.show{display:block; animation: pop .18s ease;}
+    @keyframes pop{from{transform:translateX(-50%) translateY(6px);opacity:.0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+
+    /* Footer */
+    .footer{
+      margin-top: 18px;
       padding: 18px 2px 0;
-      color: rgba(233,238,252,.55);
+      color: rgba(238,243,255,.55);
       font-size: 12px;
       display:flex; align-items:center; justify-content:space-between;
       gap: 10px;
       flex-wrap:wrap;
     }
     .links a{
-      color: rgba(233,238,252,.75);
+      color: rgba(238,243,255,.75);
       text-decoration:none;
       margin-right: 12px;
     }
     .links a:hover{ text-decoration:underline; }
-
-    .toast{
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      background: rgba(10,12,18,.85);
-      border: 1px solid rgba(255,255,255,.14);
-      padding: 10px 12px;
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      padding: 6px 10px;
       border-radius: 999px;
-      color: rgba(233,238,252,.9);
-      font-size: 13px;
-      display:none;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-      z-index: 50;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(238,243,255,.72);
+      font-size: 12px;
     }
-    .toast.show{ display:block; animation: pop .18s ease; }
-    @keyframes pop{ from{ transform:translateX(-50%) translateY(6px); opacity:.0;} to{ transform:translateX(-50%) translateY(0); opacity:1;} }
   </style>
 </head>
 
 <body>
+  <canvas id="particles"></canvas>
   <div class="grid"></div>
 
   <div class="wrap">
-    <div class="topbar">
+    <!-- NAV -->
+    <div class="nav">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>BEZOS / BZS</h1>
+        <div class="brandLogo" aria-hidden="true"></div>
+        <div class="brandTitle">
+          <p class="t">BEZOS / BZS</p>
           <div class="pill"><span class="dot"></span> Ethereum Mainnet • Verified Contract</div>
         </div>
       </div>
-      <div class="pill" title="Deployed on Ethereum Mainnet">
-        <span style="opacity:.9;">⚡</span> Fixed Supply • No Minting
+
+      <div class="navBtns">
+        <a class="btn btnGhost" id="btnDexNav" href="#" target="_blank" rel="noreferrer">📈 Dexscreener</a>
+        <a class="btn btnGhost" id="btnCmcNav" href="#" target="_blank" rel="noreferrer">🧭 CoinMarketCap</a>
+        <button class="btn btnGhost" id="btnWhitepaper">📄 Whitepaper</button>
+        <button class="btn btnPrimary" id="btnConnect">🦊 Connect Wallet</button>
       </div>
     </div>
 
+    <!-- HERO -->
     <section class="hero">
       <div class="heroInner">
         <div>
-          <div class="kicker"><span class="spark"></span> Decentralized ERC-20 Token</div>
-          <h2 class="title">BEZOS (BZS)</h2>
-          <p class="subtitle">
-            A transparent ERC-20 token deployed on Ethereum. Fixed supply minted at deployment, no additional minting,
-            no ownership control. Designed to be simple, verifiable, and immutable.
-          </p>
-
-          <div class="actions">
-            <a class="btn btnPrimary" id="btnEtherscan" href="#" target="_blank" rel="noreferrer">
-              <span class="icon">🔎</span> View on Etherscan
-            </a>
-            <a class="btn btnWarn" id="btnUniswap" href="#" target="_blank" rel="noreferrer">
-              <span class="icon">🦄</span> Buy on Uniswap
-            </a>
-            <button class="btn" id="btnCopy">
-              <span class="icon">📋</span> Copy Contract
-            </button>
+          <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
+            <div class="kicker"><span class="spark"></span> Дългосрочна визия • Прозрачен контракт • Общност</div>
+            <img class="heroLogo" src="BZS_main_clean.png" alt="BZS logo" />
           </div>
 
-          <div class="grid2">
+          <h1 class="title">BEZOS (BZS)</h1>
+          <p class="subtitle">
+            BEZOS (BZS) е ERC-20 токен на Ethereum, създаден с фокус върху доверие и ясни правила:
+            фиксирано предлагане, проверим код и публична инфраструктура (уебсайт + социални канали + тракери).
+            Целта е устойчиво развитие, а не краткосрочен хайп.
+          </p>
+
+          <div class="navBtns" style="justify-content:flex-start">
+            <a class="btn btnPrimary" id="btnEtherscan" href="#" target="_blank" rel="noreferrer">🔎 View on Etherscan</a>
+            <a class="btn btnWarn" id="btnUniswap" href="#" target="_blank" rel="noreferrer">🦄 Buy on Uniswap</a>
+            <button class="btn" id="btnCopy">📋 Copy Contract</button>
+          </div>
+
+          <div class="grid3">
             <div class="stat">
               <div class="k">Total Supply</div>
               <div class="v">1,000,000,000 BZS</div>
+              <div class="small">Фиксирано предлагане (без “изненадващ” mint).</div>
             </div>
             <div class="stat">
               <div class="k">Decimals</div>
               <div class="v">18</div>
+              <div class="small">Стандартно за ERC-20.</div>
             </div>
             <div class="stat">
               <div class="k">Standard</div>
               <div class="v">ERC-20 + Permit</div>
+              <div class="small">Модерен подпис (Permit) за по-удобни трансакции.</div>
+            </div>
+          </div>
+
+          <!-- Countdown -->
+          <div class="panel" style="margin-top:14px;">
+            <div class="panelHead">
+              <h3>⏳ Следващ milestone</h3>
+              <span class="badge" id="milestoneLabel">Liquidity & Tracking</span>
+            </div>
+            <div class="panelBody" style="text-align:left;">
+              <div class="muted">Отброяване до следващия етап (можеш да смениш датата в кода).</div>
+              <div class="count" id="countdown"></div>
+              <div class="small" style="margin-top:8px;">
+                *Няма гаранции за пазара. Това е публичен план/график, не обещание за печалба.
+              </div>
             </div>
           </div>
         </div>
 
+        <!-- Right column -->
         <div class="card">
           <div class="label">Contract Address</div>
-          <div class="addr">
+          <div style="margin-top:10px;">
             <div class="mono" id="contractDisplay">0x0000000000000000000000000000000000000000</div>
           </div>
 
-          <div class="sections">
-            <div class="card" style="background:rgba(255,255,255,.04); border-color: rgba(255,255,255,.10);">
-              <div class="label">Security</div>
-              <ul class="clean">
-                <li><span class="check">✓</span> Verified source code</li>
-                <li><span class="check">✓</span> No mint after deploy</li>
-                <li><span class="check">✓</span> No blacklist / pause</li>
+          <div class="section">
+            <div class="card" style="background:rgba(255,255,255,.04); border-color: rgba(255,255,255,.10); text-align:left;">
+              <div class="label">Security & Trust</div>
+              <ul class="list">
+                <li><span class="check">✓</span> Кодът на контракта е публичен и проверим в explorer.</li>
+                <li><span class="check">✓</span> Прозрачен supply (планира се да няма доп. mint).</li>
+                <li><span class="check">✓</span> Официални линкове към сайт, socials и тракери.</li>
               </ul>
+              <div class="small" style="margin-top:8px;">
+                Забележка: ако имаш аудит/lock/ренънс — добавяме линковете тук (без фалшиви твърдения).
+              </div>
             </div>
 
-            <div class="card" style="background:rgba(255,255,255,.04); border-color: rgba(255,255,255,.10);">
-              <div class="label">Roadmap</div>
-              <ul class="clean">
-                <li><span class="check">✓</span> Deploy & verify</li>
-                <li><span class="check">✓</span> Website live</li>
-                <li><span class="check">✓</span> Listings & expansion</li>
+            <div class="card" style="background:rgba(255,255,255,.04); border-color: rgba(255,255,255,.10); text-align:left;">
+              <div class="label">How to Buy (clean)</div>
+              <ul class="list">
+                <li><span class="check">✓</span> Отвори Uniswap и избери BZS по contract address.</li>
+                <li><span class="check">✓</span> Провери адреса в Etherscan (да е същият като в сайта).</li>
+                <li><span class="check">✓</span> Започни с малка сума и следи slippage/такси.</li>
               </ul>
             </div>
           </div>
 
-          <div style="margin-top:14px; color: rgba(233,238,252,.65); font-size: 13px; line-height: 1.5;">
-            Tip: Add your official links (X / Telegram) in the footer to improve trust and help for token info reviews.
+          <!-- Social quick links -->
+          <div class="panel" style="margin-top:14px;">
+            <div class="panelHead">
+              <h3>🔗 Official Links</h3>
+              <span class="small">винаги проверявай домейна</span>
+            </div>
+            <div class="panelBody" style="text-align:left;">
+              <div class="small muted">Тези линкове са мястото, където хората проверяват легитимност.</div>
+              <div class="navBtns" style="margin-top:10px; justify-content:flex-start;">
+                <a class="btn btnGhost" id="linkX" href="#" target="_blank" rel="noreferrer">X/Twitter</a>
+                <a class="btn btnGhost" id="linkTG" href="#" target="_blank" rel="noreferrer">Telegram</a>
+                <a class="btn btnGhost" id="linkDiscord" href="#" target="_blank" rel="noreferrer">Discord</a>
+                <a class="btn btnGhost" id="linkMedium" href="#" target="_blank" rel="noreferrer">Medium</a>
+                <a class="btn btnGhost" id="linkGitHub" href="#" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+              <div class="small" style="margin-top:10px;">
+                Препоръка: ползвай един и същ @handle навсякъде за разпознаваемост.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Price / tracking -->
+    <section class="panel" id="tracking">
+      <div class="panelHead">
+        <h3>📊 Tracking (Dexscreener / CMC)</h3>
+        <span class="small">публични данни • прозрачност</span>
+      </div>
+      <div class="panelBody">
+        <div class="cols">
+          <div class="card" style="text-align:left;">
+            <div class="label">Dexscreener</div>
+            <p class="small muted" style="margin-top:8px;">
+              Най-лесният начин хората да видят price action, liquidity и обем.
+              След като имаш pair, сложи точния линк тук.
+            </p>
+            <div class="navBtns" style="justify-content:flex-start; margin-top:10px;">
+              <a class="btn btnPrimary" id="btnDex" href="#" target="_blank" rel="noreferrer">Open Dexscreener</a>
+            </div>
+          </div>
+
+          <div class="card" style="text-align:left;">
+            <div class="label">CoinMarketCap</div>
+            <p class="small muted" style="margin-top:8px;">
+              CoinMarketCap изисква подаване и одобрение. Когато листнат токена, добави линка.
+              До тогава бутонът ще е “coming soon”.
+            </p>
+            <div class="navBtns" style="justify-content:flex-start; margin-top:10px;">
+              <a class="btn btnGhost" id="btnCmc" href="#" target="_blank" rel="noreferrer">CMC (Coming Soon)</a>
+            </div>
+          </div>
+
+          <div class="card" style="text-align:left;">
+            <div class="label">Contract verification</div>
+            <p class="small muted" style="margin-top:8px;">
+              Доверие = еднакъв contract адрес навсякъде: сайт, socials, Dexscreener, explorer.
+            </p>
+            <div class="navBtns" style="justify-content:flex-start; margin-top:10px;">
+              <a class="btn btnGhost" id="btnEtherscan2" href="#" target="_blank" rel="noreferrer">Open Etherscan</a>
+              <button class="btn" id="btnCopy2">Copy Address</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optional embed (работи след като имаш точен Dexscreener embed URL) -->
+        <div class="card" style="margin-top:12px; text-align:left;">
+          <div class="label">Live chart embed (optional)</div>
+          <p class="small muted" style="margin-top:8px;">
+            Ако Dexscreener ти даде embed линк, постави го в кода (DEXSCREENER_EMBED_URL).
+            До тогава ще показва placeholder.
+          </p>
+          <div class="embed" id="dexEmbed">
+            <div style="display:grid;place-items:center;height:100%;color:rgba(238,243,255,.65);padding:16px;text-align:center;">
+              Добави Dexscreener embed URL, за да се появи графика тук.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="panel" id="roadmap">
+      <div class="panelHead">
+        <h3>🗺️ Roadmap</h3>
+        <span class="small">ясни стъпки • измерим прогрес</span>
+      </div>
+      <div class="panelBody">
+        <div class="cols">
+          <div class="card" style="text-align:left;">
+            <div class="label">Phase 1 — Foundation</div>
+            <ul class="list">
+              <li><span class="check">✓</span> Deploy + verify contract</li>
+              <li><span class="check">✓</span> Official domain + production website</li>
+              <li><span class="check">✓</span> Social channels setup</li>
+            </ul>
+          </div>
+          <div class="card" style="text-align:left;">
+            <div class="label">Phase 2 — Liquidity & Tracking</div>
+            <ul class="list">
+              <li><span class="check">✓</span> Uniswap liquidity (ETH/BZS)</li>
+              <li><span class="check">✓</span> Dexscreener tracking link</li>
+              <li><span class="check">✓</span> Basic community growth + announcements</li>
+            </ul>
+            <div class="small" style="margin-top:8px;">
+              *Когато стане факт, добавяме линк към LP/tx за доказателство.
+            </div>
+          </div>
+          <div class="card" style="text-align:left;">
+            <div class="label">Phase 3 — Listings & Expansion</div>
+            <ul class="list">
+              <li><span class="check">✓</span> CoinMarketCap / CoinGecko submission</li>
+              <li><span class="check">✓</span> Partnerships + utilities (постепенно)</li>
+              <li><span class="check">✓</span> Open community governance direction</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="foot">
-      <div>© <span id="year"></span> BEZOS Token. Not financial advice. Crypto involves risk.</div>
+    <!-- Team -->
+    <section class="panel" id="team">
+      <div class="panelHead">
+        <h3>👥 Team & Operations</h3>
+        <span class="small">прозрачност • процес</span>
+      </div>
+      <div class="panelBody">
+        <div class="cols">
+          <div class="card" style="text-align:left;">
+            <div class="label">Core</div>
+            <p class="muted" style="margin-top:8px; line-height:1.6;">
+              Проектът се развива по “public-build” модел: сайт, план, линкове и доказателства (tx/links) се публикуват публично.
+              Това позволява на всеки да провери данните независимо.
+            </p>
+          </div>
+          <div class="card" style="text-align:left;">
+            <div class="label">Comms</div>
+            <p class="muted" style="margin-top:8px; line-height:1.6;">
+              Всички важни новини се пускат едновременно в X и Telegram. Използвай само линковете от този сайт, за да избегнеш фалшиви профили.
+            </p>
+          </div>
+          <div class="card" style="text-align:left;">
+            <div class="label">Safety</div>
+            <p class="muted" style="margin-top:8px; line-height:1.6;">
+              Никакви обещания за печалба. Никакви “guaranteed returns”.
+              Целта е чиста инфраструктура + прозрачност + общност.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div>© <span id="year"></span> BEZOS (BZS). Not financial advice.</div>
       <div class="links">
-        <!-- Сложи си линковете -->
-        <a href="#" id="linkX" target="_blank" rel="noreferrer">X/Twitter</a>
-        <a href="#" id="linkTG" target="_blank" rel="noreferrer">Telegram</a>
-        <a href="#" id="linkSite" target="_blank" rel="noreferrer">bezostoken.info</a>
+        <a href="#" id="siteLink" target="_blank" rel="noreferrer">bezostoken.info</a>
+        <a href="#" id="etherscanFooter" target="_blank" rel="noreferrer">Etherscan</a>
+        <a href="#" id="dexFooter" target="_blank" rel="noreferrer">Dexscreener</a>
+        <a href="#" id="cmcFooter" target="_blank" rel="noreferrer">CoinMarketCap</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Whitepaper modal -->
+  <div class="modalBack" id="modalBack" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Whitepaper">
+      <div class="modalHead">
+        <strong>BEZOS (BZS) — Lite Whitepaper</strong>
+        <button class="xbtn" id="closeModal">Close ✕</button>
+      </div>
+      <div class="modalBody">
+        <p><strong>TL;DR:</strong> BZS е ERC-20 токен на Ethereum с фокус върху доверие чрез проста архитектура и публична инфраструктура.</p>
+
+        <h4>1) Мисия</h4>
+        <p>
+          Да изградим токен с ясни правила и лесна проверимост: <em>фиксирано предлагане, прозрачен код, официален домейн и канали</em>.
+          Дългосрочната визия е устойчиво развитие и community-driven растеж, без агресивни обещания.
+        </p>
+
+        <h4>2) Принципи на доверие</h4>
+        <ul>
+          <li>Един и същ contract адрес навсякъде (website/socials/trackers).</li>
+          <li>Публични линкове към explorer и тракери.</li>
+          <li>Доказателства чрез tx/links (когато има liquidity, lock, listings и т.н.).</li>
+        </ul>
+
+        <h4>3) Token model</h4>
+        <p>
+          Стандарт: <code>ERC-20</code> (Ethereum). Decimals: <code>18</code>. Total supply: <code>1,000,000,000 BZS</code>.
+          Ако добавим допълнителни механизми (tax/burn/treasury), те ще бъдат описани и доказуеми.
+        </p>
+
+        <h4>4) Roadmap</h4>
+        <p>
+          Phase 1: основа (deploy/verify/website/socials). Phase 2: liquidity + tracking. Phase 3: listings + utility.
+        </p>
+
+        <h4>5) Рискове</h4>
+        <p>
+          Крипто пазарът е рисков. Няма гарантирани печалби. Винаги прави собствено проучване (DYOR).
+        </p>
       </div>
     </div>
   </div>
@@ -423,71 +755,264 @@
   <div class="toast" id="toast">Copied!</div>
 
   <script>
-    // ✅ СМЕНИ ТОЗИ АДРЕС С ТВОЯ РЕАЛЕН КОНТРАКТ:
-    const CONTRACT_ADDRESS = "0xc924a01D48c5c71cFf9977f04df1f8513939D884";
-
-    // Ако имаш Uniswap pair/линк — сложи го тук.
-    // Може временно да е само линк към Uniswap swap:
-    // https://app.uniswap.org/swap?outputCurrency=CONTRACT_ADDRESS
-    const UNISWAP_URL = "https://app.uniswap.org/swap?outputCurrency=" + CONTRACT_ADDRESS;
+    /************************************************************
+     * ✅ EDIT THESE 5 VALUES
+     ************************************************************/
+    const CONTRACT_ADDRESS = "PASTE_YOUR_CONTRACT_ADDRESS_HERE";
 
     const ETHERSCAN_URL = "https://etherscan.io/address/" + CONTRACT_ADDRESS;
+    const UNISWAP_URL   = "https://app.uniswap.org/swap?outputCurrency=" + CONTRACT_ADDRESS;
 
-    // Footer links (по желание)
-    const X_URL = "#";       // напр. https://x.com/bezostoken
-    const TG_URL = "#";      // напр. https://t.me/bezostoken
+    // Dexscreener: сложи точния линк към pair/token страница (пример placeholder)
+    const DEXSCREENER_URL = "https://dexscreener.com/ethereum/PASTE_PAIR_OR_TOKEN_HERE";
+
+    // CoinMarketCap: сложи реалния линк след като листнат (иначе остави празно)
+    const COINMARKETCAP_URL = "";
+
+    // Optional: Dexscreener embed URL (ако имаш). Иначе остави празно.
+    const DEXSCREENER_EMBED_URL = "";
+
+    /************************************************************
+     * Socials (replace when ready)
+     ************************************************************/
     const SITE_URL = "https://bezostoken.info";
+    const X_URL = "https://x.com/";              // сложи @
+    const TG_URL = "https://t.me/";              // сложи канал
+    const DISCORD_URL = "https://discord.gg/";   // invite
+    const MEDIUM_URL = "https://medium.com/@";   // профил/публикации
+    const GITHUB_URL = "https://github.com/";    // repo/org
 
-    const elContract = document.getElementById("contractDisplay");
-    const btnE = document.getElementById("btnEtherscan");
-    const btnU = document.getElementById("btnUniswap");
-    const btnCopy = document.getElementById("btnCopy");
+    /************************************************************
+     * DOM references
+     ************************************************************/
     const toast = document.getElementById("toast");
+    const contractDisplay = document.getElementById("contractDisplay");
 
-    function shortAddr(a){
-      if (!a || a.length < 10) return a;
-      return a.slice(0,6) + "…" + a.slice(-4);
-    }
+    const btnEtherscan = document.getElementById("btnEtherscan");
+    const btnEtherscan2 = document.getElementById("btnEtherscan2");
+    const btnUniswap = document.getElementById("btnUniswap");
 
+    const btnDex = document.getElementById("btnDex");
+    const btnDexNav = document.getElementById("btnDexNav");
+    const btnCmc = document.getElementById("btnCmc");
+    const btnCmcNav = document.getElementById("btnCmcNav");
+
+    const btnCopy = document.getElementById("btnCopy");
+    const btnCopy2 = document.getElementById("btnCopy2");
+
+    const linkX = document.getElementById("linkX");
+    const linkTG = document.getElementById("linkTG");
+    const linkDiscord = document.getElementById("linkDiscord");
+    const linkMedium = document.getElementById("linkMedium");
+    const linkGitHub = document.getElementById("linkGitHub");
+
+    const siteLink = document.getElementById("siteLink");
+    const etherscanFooter = document.getElementById("etherscanFooter");
+    const dexFooter = document.getElementById("dexFooter");
+    const cmcFooter = document.getElementById("cmcFooter");
+
+    /************************************************************
+     * Helpers
+     ************************************************************/
     function showToast(msg){
       toast.textContent = msg;
       toast.classList.add("show");
       setTimeout(()=>toast.classList.remove("show"), 1400);
     }
 
-    // init
-    document.getElementById("year").textContent = new Date().getFullYear();
-    elContract.textContent = CONTRACT_ADDRESS;
-    btnE.href = ETHERSCAN_URL;
-    btnU.href = UNISWAP_URL;
-
-    document.getElementById("linkX").href = X_URL;
-    document.getElementById("linkTG").href = TG_URL;
-    document.getElementById("linkSite").href = SITE_URL;
-
-    btnCopy.addEventListener("click", async () => {
+    async function copyText(text){
       try{
-        await navigator.clipboard.writeText(CONTRACT_ADDRESS);
-        showToast("Contract copied ✅");
+        await navigator.clipboard.writeText(text);
+        showToast("Copied ✅");
       }catch(e){
-        // fallback
         const ta = document.createElement("textarea");
-        ta.value = CONTRACT_ADDRESS;
+        ta.value = text;
         document.body.appendChild(ta);
         ta.select();
         document.execCommand("copy");
         ta.remove();
-        showToast("Contract copied ✅");
+        showToast("Copied ✅");
+      }
+    }
+
+    /************************************************************
+     * Init links + content
+     ************************************************************/
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Contract
+    if (CONTRACT_ADDRESS.includes("PASTE_YOUR")){
+      contractDisplay.textContent = "⚠️ Set CONTRACT_ADDRESS in the code";
+      btnEtherscan.href = "#"; btnEtherscan2.href = "#";
+      btnUniswap.href = "#";
+    } else {
+      contractDisplay.textContent = CONTRACT_ADDRESS;
+      btnEtherscan.href = ETHERSCAN_URL;
+      btnEtherscan2.href = ETHERSCAN_URL;
+      btnUniswap.href = UNISWAP_URL;
+      etherscanFooter.href = ETHERSCAN_URL;
+    }
+
+    // Dexscreener
+    btnDex.href = DEXSCREENER_URL;
+    btnDexNav.href = DEXSCREENER_URL;
+    dexFooter.href = DEXSCREENER_URL;
+
+    // CoinMarketCap
+    if (COINMARKETCAP_URL && COINMARKETCAP_URL.startsWith("http")){
+      btnCmc.textContent = "Open CoinMarketCap";
+      btnCmc.classList.remove("btnGhost");
+      btnCmc.classList.add("btnPrimary");
+      btnCmc.href = COINMARKETCAP_URL;
+      btnCmcNav.href = COINMARKETCAP_URL;
+      cmcFooter.href = COINMARKETCAP_URL;
+    } else {
+      btnCmc.href = "#";
+      btnCmcNav.href = "#";
+      cmcFooter.href = "#";
+      btnCmc.addEventListener("click", (e)=>{ e.preventDefault(); showToast("CMC link: coming soon"); });
+      btnCmcNav.addEventListener("click", (e)=>{ e.preventDefault(); showToast("CMC link: coming soon"); });
+      cmcFooter.addEventListener("click", (e)=>{ e.preventDefault(); showToast("CMC link: coming soon"); });
+    }
+
+    // Socials
+    linkX.href = X_URL; linkTG.href = TG_URL; linkDiscord.href = DISCORD_URL;
+    linkMedium.href = MEDIUM_URL; linkGitHub.href = GITHUB_URL;
+
+    siteLink.href = SITE_URL;
+
+    // Copy buttons
+    btnCopy.addEventListener("click", ()=> copyText(CONTRACT_ADDRESS));
+    btnCopy2.addEventListener("click", ()=> copyText(CONTRACT_ADDRESS));
+
+    // Whitepaper modal
+    const modalBack = document.getElementById("modalBack");
+    const btnWhitepaper = document.getElementById("btnWhitepaper");
+    const closeModal = document.getElementById("closeModal");
+    btnWhitepaper.addEventListener("click", ()=>{ modalBack.style.display="flex"; });
+    closeModal.addEventListener("click", ()=>{ modalBack.style.display="none"; });
+    modalBack.addEventListener("click", (e)=>{ if(e.target===modalBack) modalBack.style.display="none"; });
+
+    /************************************************************
+     * Wallet Connect (simple MetaMask)
+     ************************************************************/
+    const btnConnect = document.getElementById("btnConnect");
+    btnConnect.addEventListener("click", async ()=>{
+      if (!window.ethereum){
+        showToast("MetaMask not found");
+        return;
+      }
+      try{
+        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        const a = accounts?.[0] || "";
+        btnConnect.textContent = a ? ("Connected: " + a.slice(0,6) + "…" + a.slice(-4)) : "Connected";
+        showToast("Wallet connected ✅");
+      }catch(err){
+        showToast("Connection cancelled");
       }
     });
 
-    // Optional: if placeholder not changed
-    if (CONTRACT_ADDRESS.includes("PASTE_YOUR")){
-      elContract.textContent = "⚠️ Set CONTRACT_ADDRESS in the code";
-      btnE.href = "#";
-      btnU.href = "#";
+    /************************************************************
+     * Countdown (set your milestone date)
+     ************************************************************/
+    // СМЕНИ датата ако искаш (UTC). Пример: след 7 дни.
+    const target = new Date(Date.now() + 7*24*60*60*1000);
+
+    const cd = document.getElementById("countdown");
+    function tick(){
+      const now = new Date();
+      let ms = target - now;
+      if (ms < 0) ms = 0;
+      const s = Math.floor(ms/1000);
+      const d = Math.floor(s/86400);
+      const h = Math.floor((s%86400)/3600);
+      const m = Math.floor((s%3600)/60);
+      const ss = s%60;
+
+      cd.innerHTML = `
+        <div class="countBox"><div class="n">${d}</div><div class="l">Days</div></div>
+        <div class="countBox"><div class="n">${h}</div><div class="l">Hours</div></div>
+        <div class="countBox"><div class="n">${m}</div><div class="l">Minutes</div></div>
+        <div class="countBox"><div class="n">${ss}</div><div class="l">Seconds</div></div>
+      `;
     }
+    tick(); setInterval(tick, 1000);
+
+    /************************************************************
+     * Dexscreener embed (optional)
+     ************************************************************/
+    if (DEXSCREENER_EMBED_URL && DEXSCREENER_EMBED_URL.startsWith("http")){
+      const el = document.getElementById("dexEmbed");
+      el.innerHTML = `<iframe src="${DEXSCREENER_EMBED_URL}" loading="lazy" referrerpolicy="no-referrer"></iframe>`;
+    }
+
+    /************************************************************
+     * Particles (lightweight)
+     ************************************************************/
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    let w, h, particles;
+
+    function resize(){
+      w = canvas.width = window.innerWidth * devicePixelRatio;
+      h = canvas.height = window.innerHeight * devicePixelRatio;
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+    }
+    function rand(a,b){ return a + Math.random()*(b-a); }
+
+    function initParticles(){
+      const count = Math.min(120, Math.floor(window.innerWidth/12));
+      particles = Array.from({length: count}).map(()=>({
+        x: rand(0,w), y: rand(0,h),
+        vx: rand(-0.18,0.18), vy: rand(-0.18,0.18),
+        r: rand(1.2, 2.4) * devicePixelRatio,
+        a: rand(0.15,0.55)
+      }));
+    }
+
+    function step(){
+      ctx.clearRect(0,0,w,h);
+
+      // draw dots
+      for (const p of particles){
+        p.x += p.vx * devicePixelRatio;
+        p.y += p.vy * devicePixelRatio;
+        if (p.x<0) p.x=w; if (p.x>w) p.x=0;
+        if (p.y<0) p.y=h; if (p.y>h) p.y=0;
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+        ctx.fill();
+      }
+
+      // draw lines
+      for (let i=0;i<particles.length;i++){
+        for (let j=i+1;j<particles.length;j++){
+          const a = particles[i], b = particles[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.hypot(dx,dy);
+          const max = 160 * devicePixelRatio;
+          if (dist < max){
+            const alpha = (1 - dist/max) * 0.10;
+            ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
+            ctx.lineWidth = 1 * devicePixelRatio;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    resize();
+    initParticles();
+    step();
+    window.addEventListener("resize", ()=>{ resize(); initParticles(); });
   </script>
 </body>
 </html>
-
