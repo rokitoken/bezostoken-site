@@ -1,17 +1,16 @@
 <!doctype html>
-<html lang="bg">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>BEZOS (BZS) — ERC-20 on Ethereum</title>
-  <meta name="description" content="BEZOS (BZS) е ERC-20 токен на Ethereum с фиксирано предлагане, прозрачен контракт и фокус върху доверие, общност и дългосрочна визия." />
+  <meta name="description" content="BEZOS (BZS) is an ERC-20 token on Ethereum with fixed supply, verifiable code, and a long-term vision focused on trust and community." />
 
   <link rel="icon" type="image/png" href="favicon.png" />
 
   <meta property="og:title" content="BEZOS (BZS)" />
   <meta property="og:description" content="ERC-20 token on Ethereum. Fixed supply. Verified contract. Long-term vision." />
   <meta property="og:type" content="website" />
-  <!-- <meta property="og:image" content="https://bezostoken.info/og.png" /> -->
 
   <style>
     :root{
@@ -128,7 +127,7 @@
       color: rgba(238,243,255,.75);
       padding: 10px 12px;
       cursor:pointer;
-      font-weight: 750;
+      font-weight: 800;
       letter-spacing:.04em;
     }
     .langToggle button.active{
@@ -379,8 +378,10 @@
 
     /* i18n */
     [data-i18n]{ display:none; }
-    html[lang="bg"] [data-i18n="bg"]{ display:inline; }
     html[lang="en"] [data-i18n="en"]{ display:inline; }
+    html[lang="ru"] [data-i18n="ru"]{ display:inline; }
+    html[lang="de"] [data-i18n="de"]{ display:inline; }
+    html[lang="es"] [data-i18n="es"]{ display:inline; }
   </style>
 </head>
 
@@ -395,25 +396,35 @@
         <div class="brandTitle">
           <p class="t">BEZOS / BZS</p>
           <div class="pill"><span class="dot"></span>
-            <span data-i18n="bg">Ethereum Mainnet • Верифициран контракт</span>
             <span data-i18n="en">Ethereum Mainnet • Verified contract</span>
+            <span data-i18n="ru">Ethereum Mainnet • Верифицированный контракт</span>
+            <span data-i18n="de">Ethereum Mainnet • Verifizierter Vertrag</span>
+            <span data-i18n="es">Ethereum Mainnet • Contrato verificado</span>
           </div>
         </div>
       </div>
 
       <div class="navBtns">
         <div class="langToggle" aria-label="Language toggle">
-          <button id="langBg" class="active" type="button">BG</button>
-          <button id="langEn" type="button">EN</button>
+          <button id="langEn" class="active" type="button">EN</button>
+          <button id="langRu" type="button">RU</button>
+          <button id="langDe" type="button">DE</button>
+          <button id="langEs" type="button">ES</button>
         </div>
 
         <a class="btn btnGhost" id="btnDexNav" href="#" target="_blank" rel="noreferrer">📈 Dexscreener</a>
         <a class="btn btnGhost" id="btnCmcNav" href="#" target="_blank" rel="noreferrer">🧭 CoinMarketCap</a>
         <button class="btn btnGhost" id="btnWhitepaper" type="button">📄
-          <span data-i18n="bg">Whitepaper</span><span data-i18n="en">Whitepaper</span>
+          <span data-i18n="en">Whitepaper</span>
+          <span data-i18n="ru">Вайтпейпер</span>
+          <span data-i18n="de">Whitepaper</span>
+          <span data-i18n="es">Whitepaper</span>
         </button>
         <button class="btn btnPrimary" id="btnConnect" type="button">🦊
-          <span data-i18n="bg">Свържи портфейл</span><span data-i18n="en">Connect wallet</span>
+          <span data-i18n="en">Connect wallet</span>
+          <span data-i18n="ru">Подключить кошелёк</span>
+          <span data-i18n="de">Wallet verbinden</span>
+          <span data-i18n="es">Conectar wallet</span>
         </button>
       </div>
     </div>
@@ -423,8 +434,10 @@
         <div>
           <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
             <div class="kicker"><span class="spark"></span>
-              <span data-i18n="bg">Дългосрочна визия • Прозрачен контракт • Общност</span>
               <span data-i18n="en">Long-term vision • Transparent contract • Community</span>
+              <span data-i18n="ru">Долгосрочное видение • Прозрачный контракт • Сообщество</span>
+              <span data-i18n="de">Langfristige Vision • Transparenter Vertrag • Community</span>
+              <span data-i18n="es">Visión a largo plazo • Contrato transparente • Comunidad</span>
             </div>
             <img class="heroLogo" src="BZS_main_clean.png" alt="BZS logo" />
           </div>
@@ -432,129 +445,162 @@
           <h1 class="title">BEZOS (BZS)</h1>
 
           <p class="subtitle">
-            <span data-i18n="bg">
-              BEZOS (BZS) е ERC-20 токен на Ethereum, създаден с фокус върху доверие и ясни правила:
-              фиксирано предлагане, проверим код и публична инфраструктура (уебсайт + социални канали + тракери).
-              Целта е устойчиво развитие, а не краткосрочен хайп.
-            </span>
             <span data-i18n="en">
-              BEZOS (BZS) is an ERC-20 token on Ethereum designed with a focus on trust and clear rules:
-              fixed supply, verifiable code, and public infrastructure (website + social channels + trackers).
+              BEZOS (BZS) is an ERC-20 token on Ethereum focused on trust and clear rules:
+              fixed supply, verifiable code, and public infrastructure (website + socials + trackers).
               The goal is sustainable growth, not short-term hype.
+            </span>
+            <span data-i18n="ru">
+              BEZOS (BZS) — ERC-20 токен в сети Ethereum с акцентом на доверие и понятные правила:
+              фиксированное предложение, проверяемый код и публичная инфраструктура (сайт + соцсети + трекеры).
+              Цель — устойчивое развитие, а не краткосрочный хайп.
+            </span>
+            <span data-i18n="de">
+              BEZOS (BZS) ist ein ERC-20-Token auf Ethereum mit Fokus auf Vertrauen und klare Regeln:
+              фиксiertes Angebot, überprüfbarer Code und öffentliche Infrastruktur (Website + Socials + Tracker).
+              Ziel ist nachhaltiges Wachstum, nicht kurzfristiger Hype.
+            </span>
+            <span data-i18n="es">
+              BEZOS (BZS) es un token ERC-20 en Ethereum enfocado en la confianza y reglas claras:
+              suministro fijo, código verificable e infraestructura pública (web + redes + trackers).
+              El objetivo es crecimiento sostenible, no hype a corto plazo.
             </span>
           </p>
 
           <div class="navBtns" style="justify-content:flex-start">
             <a class="btn btnPrimary" id="btnEtherscan" href="#" target="_blank" rel="noreferrer">🔎
-              <span data-i18n="bg">Виж в Etherscan</span><span data-i18n="en">View on Etherscan</span>
+              <span data-i18n="en">View on Etherscan</span>
+              <span data-i18n="ru">Открыть в Etherscan</span>
+              <span data-i18n="de">Auf Etherscan ansehen</span>
+              <span data-i18n="es">Ver en Etherscan</span>
             </a>
             <a class="btn btnWarn" id="btnUniswap" href="#" target="_blank" rel="noreferrer">🦄
-              <span data-i18n="bg">Купи в Uniswap</span><span data-i18n="en">Buy on Uniswap</span>
+              <span data-i18n="en">Buy on Uniswap</span>
+              <span data-i18n="ru">Купить на Uniswap</span>
+              <span data-i18n="de">Auf Uniswap kaufen</span>
+              <span data-i18n="es">Comprar en Uniswap</span>
             </a>
             <button class="btn" id="btnCopy" type="button">📋
-              <span data-i18n="bg">Копирай контракт</span><span data-i18n="en">Copy contract</span>
+              <span data-i18n="en">Copy contract</span>
+              <span data-i18n="ru">Копировать контракт</span>
+              <span data-i18n="de">Vertrag kopieren</span>
+              <span data-i18n="es">Copiar contrato</span>
             </button>
           </div>
 
           <div class="grid3">
             <div class="stat">
-              <div class="k">
-                <span data-i18n="bg">Общо предлагане</span><span data-i18n="en">Total supply</span>
-              </div>
+              <div class="k"><span data-i18n="en">Total supply</span><span data-i18n="ru">Общее предложение</span><span data-i18n="de">Gesamtangebot</span><span data-i18n="es">Suministro total</span></div>
               <div class="v">1,000,000,000 BZS</div>
               <div class="small">
-                <span data-i18n="bg">Фиксирано предлагане (без “изненадващ” mint).</span>
-                <span data-i18n="en">Fixed supply (no surprise minting).</span>
+                <span data-i18n="en">Fixed supply (no “surprise” mint).</span>
+                <span data-i18n="ru">Фиксированное предложение (без “неожиданного” минта).</span>
+                <span data-i18n="de">Fixes Angebot (kein „Überraschungs“-Mint).</span>
+                <span data-i18n="es">Suministro fijo (sin mint “sorpresa”).</span>
               </div>
             </div>
             <div class="stat">
-              <div class="k">
-                <span data-i18n="bg">Десетични</span><span data-i18n="en">Decimals</span>
-              </div>
+              <div class="k"><span data-i18n="en">Decimals</span><span data-i18n="ru">Десятичные</span><span data-i18n="de">Dezimalstellen</span><span data-i18n="es">Decimales</span></div>
               <div class="v">18</div>
               <div class="small">
-                <span data-i18n="bg">Стандартно за ERC-20.</span>
-                <span data-i18n="en">Standard for ERC-20 tokens.</span>
+                <span data-i18n="en">Standard ERC-20 format.</span>
+                <span data-i18n="ru">Стандартный формат ERC-20.</span>
+                <span data-i18n="de">Standard für ERC-20.</span>
+                <span data-i18n="es">Estándar para ERC-20.</span>
               </div>
             </div>
             <div class="stat">
-              <div class="k">
-                <span data-i18n="bg">Стандарт</span><span data-i18n="en">Standard</span>
-              </div>
+              <div class="k"><span data-i18n="en">Standard</span><span data-i18n="ru">Стандарт</span><span data-i18n="de">Standard</span><span data-i18n="es">Estándar</span></div>
               <div class="v">ERC-20 + Permit</div>
               <div class="small">
-                <span data-i18n="bg">Permit подписи за по-удобни трансакции.</span>
                 <span data-i18n="en">Permit signatures for smoother UX.</span>
+                <span data-i18n="ru">Подписи Permit для более удобного UX.</span>
+                <span data-i18n="de">Permit-Signaturen für bessere UX.</span>
+                <span data-i18n="es">Firmas Permit para mejor UX.</span>
               </div>
             </div>
           </div>
 
           <div class="panel" style="margin-top:14px;">
             <div class="panelHead">
-              <h3>⏳ <span data-i18n="bg">Следващ milestone</span><span data-i18n="en">Next milestone</span></h3>
-              <span class="badge" id="milestoneLabel">
-                <span data-i18n="bg">Liquidity & Tracking</span><span data-i18n="en">Liquidity & Tracking</span>
-              </span>
+              <h3>⏳ <span data-i18n="en">Next milestone</span><span data-i18n="ru">Следующий этап</span><span data-i18n="de">Nächster Meilenstein</span><span data-i18n="es">Próximo hito</span></h3>
+              <span class="badge" id="milestoneLabel"><span data-i18n="en">Liquidity & Tracking</span><span data-i18n="ru">Ликвидность и трекинг</span><span data-i18n="de">Liquidität & Tracking</span><span data-i18n="es">Liquidez y tracking</span></span>
             </div>
             <div class="panelBody" style="text-align:left;">
               <div class="muted">
-                <span data-i18n="bg">Отброяване до следващия етап (можеш да смениш датата в кода).</span>
-                <span data-i18n="en">Countdown to the next milestone (you can change the date in code).</span>
+                <span data-i18n="en">Countdown to the next phase (you can change the date in code).</span>
+                <span data-i18n="ru">Отсчёт до следующей фазы (дату можно изменить в коде).</span>
+                <span data-i18n="de">Countdown bis zur nächsten Phase (Datum im Code ändern).</span>
+                <span data-i18n="es">Cuenta atrás para la siguiente fase (cambia la fecha en el código).</span>
               </div>
               <div class="count" id="countdown"></div>
               <div class="small" style="margin-top:8px;">
-                <span data-i18n="bg">*Няма гаранции за пазара. Това е публичен план, не обещание за печалба.</span>
                 <span data-i18n="en">*No market guarantees. This is a public plan, not a promise of profit.</span>
+                <span data-i18n="ru">*Нет гарантий рынка. Это публичный план, не обещание прибыли.</span>
+                <span data-i18n="de">*Keine Marktgarantien. Das ist ein Plan, kein Gewinnversprechen.</span>
+                <span data-i18n="es">*Sin garantías. Es un plan público, no una promesa de ganancias.</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="card">
-          <div class="label">
-            <span data-i18n="bg">Контракт адрес</span><span data-i18n="en">Contract address</span>
-          </div>
+          <div class="label"><span data-i18n="en">Contract address</span><span data-i18n="ru">Адрес контракта</span><span data-i18n="de">Vertragsadresse</span><span data-i18n="es">Dirección del contrato</span></div>
           <div style="margin-top:10px;">
             <div class="mono" id="contractDisplay">0x0000000000000000000000000000000000000000</div>
           </div>
 
           <div class="section">
             <div class="card" style="background:rgba(255,255,255,.04); border-color: rgba(255,255,255,.10); text-align:left;">
-              <div class="label"><span data-i18n="bg">Сигурност & Доверие</span><span data-i18n="en">Security & Trust</span></div>
+              <div class="label"><span data-i18n="en">Security & Trust</span><span data-i18n="ru">Безопасность и доверие</span><span data-i18n="de">Sicherheit & Vertrauen</span><span data-i18n="es">Seguridad y confianza</span></div>
               <ul class="list">
                 <li><span class="check">✓</span>
-                  <span data-i18n="bg">Кодът е публичен и проверим в explorer.</span>
                   <span data-i18n="en">Source code is public and verifiable on the explorer.</span>
+                  <span data-i18n="ru">Исходный код публичный и проверяемый в explorer.</span>
+                  <span data-i18n="de">Quellcode ist öffentlich und im Explorer verifizierbar.</span>
+                  <span data-i18n="es">El código es público y verificable en el explorer.</span>
                 </li>
                 <li><span class="check">✓</span>
-                  <span data-i18n="bg">Прозрачен supply (планира се да няма доп. mint).</span>
                   <span data-i18n="en">Transparent supply (planned: no additional minting).</span>
+                  <span data-i18n="ru">Прозрачный supply (план: без дополнительного минта).</span>
+                  <span data-i18n="de">Transparentes Angebot (geplant: kein weiteres Minting).</span>
+                  <span data-i18n="es">Suministro transparente (plan: sin mint adicional).</span>
                 </li>
                 <li><span class="check">✓</span>
-                  <span data-i18n="bg">Официални линкове към сайт, socials и тракери.</span>
                   <span data-i18n="en">Official links to website, socials, and trackers.</span>
+                  <span data-i18n="ru">Официальные ссылки: сайт, соцсети и трекеры.</span>
+                  <span data-i18n="de">Offizielle Links: Website, Socials und Tracker.</span>
+                  <span data-i18n="es">Enlaces oficiales: web, redes y trackers.</span>
                 </li>
               </ul>
               <div class="small" style="margin-top:8px;">
-                <span data-i18n="bg">Забележка: ако имаш аудит/lock/ренънс — добавяме линковете тук (без фалшиви твърдения).</span>
-                <span data-i18n="en">Note: if you have an audit/lock/renounce — we’ll add proof links here (no false claims).</span>
+                <span data-i18n="en">Note: if you have an audit/lock/renounce — add proof links here (no false claims).</span>
+                <span data-i18n="ru">Примечание: аудит/lock/renounce — добавляем только с доказательствами (без ложных заявлений).</span>
+                <span data-i18n="de">Hinweis: Audit/Lock/Renounce nur mit Nachweisen (keine falschen Aussagen).</span>
+                <span data-i18n="es">Nota: audit/lock/renounce solo con pruebas (sin afirmaciones falsas).</span>
               </div>
             </div>
 
             <div class="card" style="background:rgba(255,255,255,.04); border-color: rgba(255,255,255,.10); text-align:left;">
-              <div class="label"><span data-i18n="bg">Как да купиш</span><span data-i18n="en">How to buy</span></div>
+              <div class="label"><span data-i18n="en">How to buy</span><span data-i18n="ru">Как купить</span><span data-i18n="de">So kaufst du</span><span data-i18n="es">Cómo comprar</span></div>
               <ul class="list">
                 <li><span class="check">✓</span>
-                  <span data-i18n="bg">Отвори Uniswap и избери BZS по contract address.</span>
                   <span data-i18n="en">Open Uniswap and select BZS via the contract address.</span>
+                  <span data-i18n="ru">Открой Uniswap и выбери BZS по адресу контракта.</span>
+                  <span data-i18n="de">Öffne Uniswap und wähle BZS über die Vertragsadresse.</span>
+                  <span data-i18n="es">Abre Uniswap y selecciona BZS usando la dirección del contrato.</span>
                 </li>
                 <li><span class="check">✓</span>
-                  <span data-i18n="bg">Провери адреса в Etherscan (да е същият като в сайта).</span>
                   <span data-i18n="en">Verify the address on Etherscan (must match the website).</span>
+                  <span data-i18n="ru">Проверь адрес в Etherscan (должен совпадать с сайтом).</span>
+                  <span data-i18n="de">Prüfe die Adresse auf Etherscan (muss mit der Website übereinstimmen).</span>
+                  <span data-i18n="es">Verifica la dirección en Etherscan (debe coincidir con la web).</span>
                 </li>
                 <li><span class="check">✓</span>
-                  <span data-i18n="bg">Започни с малка сума и следи slippage/такси.</span>
                   <span data-i18n="en">Start small and watch slippage/fees.</span>
+                  <span data-i18n="ru">Начни с малого и следи slippage/комиссии.</span>
+                  <span data-i18n="de">Starte klein und achte auf Slippage/Gebühren.</span>
+                  <span data-i18n="es">Empieza con poco y revisa slippage/comisiones.</span>
                 </li>
               </ul>
             </div>
@@ -562,13 +608,15 @@
 
           <div class="panel" style="margin-top:14px;">
             <div class="panelHead">
-              <h3>🔗 <span data-i18n="bg">Официални линкове</span><span data-i18n="en">Official links</span></h3>
-              <span class="small"><span data-i18n="bg">винаги проверявай домейна</span><span data-i18n="en">always verify the domain</span></span>
+              <h3>🔗 <span data-i18n="en">Official links</span><span data-i18n="ru">Официальные ссылки</span><span data-i18n="de">Offizielle Links</span><span data-i18n="es">Enlaces oficiales</span></h3>
+              <span class="small"><span data-i18n="en">always verify the domain</span><span data-i18n="ru">всегда проверяй домен</span><span data-i18n="de">Domain immer prüfen</span><span data-i18n="es">verifica el dominio</span></span>
             </div>
             <div class="panelBody" style="text-align:left;">
               <div class="small muted">
-                <span data-i18n="bg">Тези линкове са мястото, където хората проверяват легитимност.</span>
                 <span data-i18n="en">These links are where people verify legitimacy.</span>
+                <span data-i18n="ru">По этим ссылкам люди проверяют легитимность.</span>
+                <span data-i18n="de">Über diese Links prüfen Nutzer die Echtheit.</span>
+                <span data-i18n="es">Estos enlaces sirven para verificar legitimidad.</span>
               </div>
               <div class="navBtns" style="margin-top:10px; justify-content:flex-start;">
                 <a class="btn btnGhost" id="linkX" href="#" target="_blank" rel="noreferrer">X/Twitter</a>
@@ -578,8 +626,10 @@
                 <a class="btn btnGhost" id="linkGitHub" href="#" target="_blank" rel="noreferrer">GitHub</a>
               </div>
               <div class="small" style="margin-top:10px;">
-                <span data-i18n="bg">Препоръка: ползвай един и същ @handle навсякъде за разпознаваемост.</span>
                 <span data-i18n="en">Tip: use the same @handle everywhere for consistency.</span>
+                <span data-i18n="ru">Совет: используй один и тот же @handle везде.</span>
+                <span data-i18n="de">Tipp: überall denselben @Handle nutzen.</span>
+                <span data-i18n="es">Tip: usa el mismo @handle en todas partes.</span>
               </div>
             </div>
           </div>
@@ -588,172 +638,8 @@
       </div>
     </section>
 
-    <section class="panel" id="tracking">
-      <div class="panelHead">
-        <h3>📊 <span data-i18n="bg">Тракери (Dexscreener / CMC)</span><span data-i18n="en">Tracking (Dexscreener / CMC)</span></h3>
-        <span class="small"><span data-i18n="bg">публични данни • прозрачност</span><span data-i18n="en">public data • transparency</span></span>
-      </div>
-      <div class="panelBody">
-        <div class="cols">
-          <div class="card" style="text-align:left;">
-            <div class="label">Dexscreener</div>
-            <p class="small muted" style="margin-top:8px;">
-              <span data-i18n="bg">
-                Най-лесният начин хората да видят price action, liquidity и обем.
-                След като имаш pair, сложи точния линк тук.
-              </span>
-              <span data-i18n="en">
-                The easiest way for people to see price action, liquidity, and volume.
-                Once you have a pair, place the exact link here.
-              </span>
-            </p>
-            <div class="navBtns" style="justify-content:flex-start; margin-top:10px;">
-              <a class="btn btnPrimary" id="btnDex" href="#" target="_blank" rel="noreferrer">
-                <span data-i18n="bg">Отвори Dexscreener</span><span data-i18n="en">Open Dexscreener</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="card" style="text-align:left;">
-            <div class="label">CoinMarketCap</div>
-            <p class="small muted" style="margin-top:8px;">
-              <span data-i18n="bg">
-                CoinMarketCap изисква подаване и одобрение. Когато листнат токена, добави линка.
-                До тогава бутонът ще е “coming soon”.
-              </span>
-              <span data-i18n="en">
-                CoinMarketCap requires submission and approval. Once listed, add the link here.
-                Until then, the button will show “coming soon”.
-              </span>
-            </p>
-            <div class="navBtns" style="justify-content:flex-start; margin-top:10px;">
-              <a class="btn btnGhost" id="btnCmc" href="#" target="_blank" rel="noreferrer">
-                <span data-i18n="bg">CMC (Скоро)</span><span data-i18n="en">CMC (Coming soon)</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="card" style="text-align:left;">
-            <div class="label"><span data-i18n="bg">Верификация</span><span data-i18n="en">Verification</span></div>
-            <p class="small muted" style="margin-top:8px;">
-              <span data-i18n="bg">Доверие = еднакъв contract адрес навсякъде: сайт, socials, Dexscreener, explorer.</span>
-              <span data-i18n="en">Trust = the same contract address everywhere: site, socials, Dexscreener, explorer.</span>
-            </p>
-            <div class="navBtns" style="justify-content:flex-start; margin-top:10px;">
-              <a class="btn btnGhost" id="btnEtherscan2" href="#" target="_blank" rel="noreferrer">Etherscan</a>
-              <button class="btn" id="btnCopy2" type="button"><span data-i18n="bg">Копирай</span><span data-i18n="en">Copy</span></button>
-            </div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px; text-align:left;">
-          <div class="label"><span data-i18n="bg">Live графика (по желание)</span><span data-i18n="en">Live chart embed (optional)</span></div>
-          <p class="small muted" style="margin-top:8px;">
-            <span data-i18n="bg">Ако Dexscreener ти даде embed линк, постави го в кода (DEXSCREENER_EMBED_URL).</span>
-            <span data-i18n="en">If Dexscreener provides an embed link, place it in code (DEXSCREENER_EMBED_URL).</span>
-          </p>
-          <div class="embed" id="dexEmbed">
-            <div style="display:grid;place-items:center;height:100%;color:rgba(238,243,255,.65);padding:16px;text-align:center;">
-              <span data-i18n="bg">Добави Dexscreener embed URL, за да се появи графика тук.</span>
-              <span data-i18n="en">Add a Dexscreener embed URL to show the chart here.</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="panel" id="roadmap">
-      <div class="panelHead">
-        <h3>🗺️ <span data-i18n="bg">План</span><span data-i18n="en">Roadmap</span></h3>
-        <span class="small"><span data-i18n="bg">ясни стъпки • измерим прогрес</span><span data-i18n="en">clear steps • measurable progress</span></span>
-      </div>
-      <div class="panelBody">
-        <div class="cols">
-          <div class="card" style="text-align:left;">
-            <div class="label"><span data-i18n="bg">Фаза 1 — Основа</span><span data-i18n="en">Phase 1 — Foundation</span></div>
-            <ul class="list">
-              <li><span class="check">✓</span><span data-i18n="bg">Deploy + верификация на контракта</span><span data-i18n="en">Deploy + contract verification</span></li>
-              <li><span class="check">✓</span><span data-i18n="bg">Официален домейн + production сайт</span><span data-i18n="en">Official domain + production website</span></li>
-              <li><span class="check">✓</span><span data-i18n="bg">Създаване на социални канали</span><span data-i18n="en">Social channels setup</span></li>
-            </ul>
-          </div>
-          <div class="card" style="text-align:left;">
-            <div class="label"><span data-i18n="bg">Фаза 2 — Liquidity & Tracking</span><span data-i18n="en">Phase 2 — Liquidity & Tracking</span></div>
-            <ul class="list">
-              <li><span class="check">✓</span><span data-i18n="bg">Uniswap liquidity (ETH/BZS)</span><span data-i18n="en">Uniswap liquidity (ETH/BZS)</span></li>
-              <li><span class="check">✓</span><span data-i18n="bg">Dexscreener tracking линк</span><span data-i18n="en">Dexscreener tracking link</span></li>
-              <li><span class="check">✓</span><span data-i18n="bg">Първоначален community растеж</span><span data-i18n="en">Initial community growth</span></li>
-            </ul>
-            <div class="small" style="margin-top:8px;">
-              <span data-i18n="bg">*Когато стане факт, добавяме линк към LP/tx за доказателство.</span>
-              <span data-i18n="en">*Once live, we’ll add proof links (LP/tx).</span>
-            </div>
-          </div>
-          <div class="card" style="text-align:left;">
-            <div class="label"><span data-i18n="bg">Фаза 3 — Листинги & Развитие</span><span data-i18n="en">Phase 3 — Listings & Expansion</span></div>
-            <ul class="list">
-              <li><span class="check">✓</span><span data-i18n="bg">CoinMarketCap / CoinGecko подаване</span><span data-i18n="en">CoinMarketCap / CoinGecko submissions</span></li>
-              <li><span class="check">✓</span><span data-i18n="bg">Партньорства + utilities (постепенно)</span><span data-i18n="en">Partnerships + utilities (gradual)</span></li>
-              <li><span class="check">✓</span><span data-i18n="bg">Посока към community governance</span><span data-i18n="en">Direction towards community governance</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel" id="team">
-      <div class="panelHead">
-        <h3>👥 <span data-i18n="bg">Екип & Операции</span><span data-i18n="en">Team & Operations</span></h3>
-        <span class="small"><span data-i18n="bg">прозрачност • процес</span><span data-i18n="en">transparency • process</span></span>
-      </div>
-      <div class="panelBody">
-        <div class="cols">
-          <div class="card" style="text-align:left;">
-            <div class="label">Core</div>
-            <p class="muted" style="margin-top:8px; line-height:1.6;">
-              <span data-i18n="bg">
-                Проектът следва “public-build” модел: линкове, план и доказателства (tx) се публикуват публично.
-                Това позволява на всеки да провери данните независимо.
-              </span>
-              <span data-i18n="en">
-                The project follows a “public-build” model: links, plans, and proofs (tx) are published openly,
-                enabling independent verification.
-              </span>
-            </p>
-          </div>
-          <div class="card" style="text-align:left;">
-            <div class="label">Comms</div>
-            <p class="muted" style="margin-top:8px; line-height:1.6;">
-              <span data-i18n="bg">
-                Всички важни новини се публикуват едновременно в X и Telegram.
-                Използвай само линковете от този сайт, за да избегнеш фалшиви профили.
-              </span>
-              <span data-i18n="en">
-                All important updates are posted simultaneously on X and Telegram.
-                Use only links from this website to avoid impersonators.
-              </span>
-            </p>
-          </div>
-          <div class="card" style="text-align:left;">
-            <div class="label">Safety</div>
-            <p class="muted" style="margin-top:8px; line-height:1.6;">
-              <span data-i18n="bg">
-                Никакви обещания за печалба. Никакви “guaranteed returns”.
-                Целта е инфраструктура + прозрачност + общност.
-              </span>
-              <span data-i18n="en">
-                No profit promises. No “guaranteed returns”.
-                The goal is infrastructure + transparency + community.
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <div class="footer">
-      <div>© <span id="year"></span> BEZOS (BZS). <span data-i18n="bg">Не е финансов съвет.</span><span data-i18n="en">Not financial advice.</span></div>
+      <div>© <span id="year"></span> BEZOS (BZS). <span data-i18n="en">Not financial advice.</span><span data-i18n="ru">Не финансовый совет.</span><span data-i18n="de">Keine Finanzberatung.</span><span data-i18n="es">No es asesoramiento financiero.</span></div>
       <div class="links">
         <a href="#" id="siteLink" target="_blank" rel="noreferrer">bezostoken.info</a>
         <a href="#" id="etherscanFooter" target="_blank" rel="noreferrer">Etherscan</a>
@@ -766,38 +652,22 @@
   <div class="modalBack" id="modalBack" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-label="Whitepaper">
       <div class="modalHead">
-        <strong><span data-i18n="bg">BEZOS (BZS) — Кратък Whitepaper</span><span data-i18n="en">BEZOS (BZS) — Lite Whitepaper</span></strong>
-        <button class="xbtn" id="closeModal" type="button"><span data-i18n="bg">Затвори</span><span data-i18n="en">Close</span> ✕</button>
+        <strong>
+          <span data-i18n="en">BEZOS (BZS) — Lite Whitepaper</span>
+          <span data-i18n="ru">BEZOS (BZS) — Краткий вайтпейпер</span>
+          <span data-i18n="de">BEZOS (BZS) — Kurz-Whitepaper</span>
+          <span data-i18n="es">BEZOS (BZS) — Whitepaper breve</span>
+        </strong>
+        <button class="xbtn" id="closeModal" type="button">
+          <span data-i18n="en">Close</span><span data-i18n="ru">Закрыть</span><span data-i18n="de">Schließen</span><span data-i18n="es">Cerrar</span> ✕
+        </button>
       </div>
       <div class="modalBody">
         <p><strong>TL;DR:</strong>
-          <span data-i18n="bg">BZS е ERC-20 токен на Ethereum с фокус върху доверие чрез проста архитектура и публична инфраструктура.</span>
           <span data-i18n="en">BZS is an ERC-20 token on Ethereum focused on trust via simple architecture and public infrastructure.</span>
-        </p>
-
-        <h4><span data-i18n="bg">1) Мисия</span><span data-i18n="en">1) Mission</span></h4>
-        <p>
-          <span data-i18n="bg">Да изградим токен с ясни правила и лесна проверимост: фиксирано предлагане, прозрачен код, официален домейн и канали.</span>
-          <span data-i18n="en">Build a token with clear rules and easy verification: fixed supply, transparent code, and official domain/channels.</span>
-        </p>
-
-        <h4><span data-i18n="bg">2) Принципи на доверие</span><span data-i18n="en">2) Trust principles</span></h4>
-        <ul>
-          <li><span data-i18n="bg">Един и същ contract адрес навсякъде (website/socials/trackers).</span><span data-i18n="en">Same contract address everywhere (website/socials/trackers).</span></li>
-          <li><span data-i18n="bg">Публични линкове към explorer и тракери.</span><span data-i18n="en">Public links to explorer and trackers.</span></li>
-          <li><span data-i18n="bg">Доказателства чрез tx/links (където е приложимо).</span><span data-i18n="en">Proof via tx/links (when applicable).</span></li>
-        </ul>
-
-        <h4><span data-i18n="bg">3) Token model</span><span data-i18n="en">3) Token model</span></h4>
-        <p>
-          <span data-i18n="bg">Стандарт: <code>ERC-20</code>. Decimals: <code>18</code>. Total supply: <code>1,000,000,000 BZS</code>.</span>
-          <span data-i18n="en">Standard: <code>ERC-20</code>. Decimals: <code>18</code>. Total supply: <code>1,000,000,000 BZS</code>.</span>
-        </p>
-
-        <h4><span data-i18n="bg">4) Рискове</span><span data-i18n="en">4) Risks</span></h4>
-        <p>
-          <span data-i18n="bg">Крипто пазарът е рисков. Няма гарантирани печалби. Винаги прави собствено проучване (DYOR).</span>
-          <span data-i18n="en">Crypto is risky. No guaranteed returns. Always do your own research (DYOR).</span>
+          <span data-i18n="ru">BZS — ERC-20 токен на Ethereum с фокусом на доверие через простую архитектуру и публичную инфраструктуру.</span>
+          <span data-i18n="de">BZS ist ein ERC-20-Token auf Ethereum mit Fokus auf Vertrauen durch einfache Architektur und öffentliche Infrastruktur.</span>
+          <span data-i18n="es">BZS es un token ERC-20 en Ethereum centrado en la confianza mediante arquitectura simple e infraestructura pública.</span>
         </p>
       </div>
     </div>
@@ -831,16 +701,12 @@
     const contractDisplay = document.getElementById("contractDisplay");
 
     const btnEtherscan = document.getElementById("btnEtherscan");
-    const btnEtherscan2 = document.getElementById("btnEtherscan2");
     const btnUniswap = document.getElementById("btnUniswap");
 
-    const btnDex = document.getElementById("btnDex");
     const btnDexNav = document.getElementById("btnDexNav");
-    const btnCmc = document.getElementById("btnCmc");
     const btnCmcNav = document.getElementById("btnCmcNav");
 
     const btnCopy = document.getElementById("btnCopy");
-    const btnCopy2 = document.getElementById("btnCopy2");
 
     const linkX = document.getElementById("linkX");
     const linkTG = document.getElementById("linkTG");
@@ -864,7 +730,7 @@
     async function copyText(text){
       try{
         await navigator.clipboard.writeText(text);
-        showToast(document.documentElement.lang === "bg" ? "Копирано ✅" : "Copied ✅");
+        showToast(msg("copied"));
       }catch(e){
         const ta = document.createElement("textarea");
         ta.value = text;
@@ -872,25 +738,47 @@
         ta.select();
         document.execCommand("copy");
         ta.remove();
-        showToast(document.documentElement.lang === "bg" ? "Копирано ✅" : "Copied ✅");
+        showToast(msg("copied"));
       }
     }
 
+    function msg(key){
+      const lang = document.documentElement.lang || "en";
+      const dict = {
+        copied: { en:"Copied ✅", ru:"Скопировано ✅", de:"Kopiert ✅", es:"Copiado ✅" },
+        setContract: { en:"⚠️ Set CONTRACT_ADDRESS in the code", ru:"⚠️ Укажи CONTRACT_ADDRESS в коде", de:"⚠️ Setze CONTRACT_ADDRESS im Code", es:"⚠️ Define CONTRACT_ADDRESS en el código" },
+        noMM: { en:"MetaMask not found", ru:"MetaMask не найден", de:"MetaMask nicht gefunden", es:"MetaMask no encontrado" },
+        cancelled: { en:"Cancelled", ru:"Отменено", de:"Abgebrochen", es:"Cancelado" },
+        connected: { en:"Connected ✅", ru:"Подключено ✅", de:"Verbunden ✅", es:"Conectado ✅" },
+        cmcSoon: { en:"CMC link: coming soon", ru:"Ссылка CMC: скоро", de:"CMC-Link: bald", es:"Link CMC: pronto" }
+      };
+      return (dict[key] && dict[key][lang]) ? dict[key][lang] : (dict[key]?.en || "");
+    }
+
     /************************************************************
-     * Language toggle
+     * Language toggle (EN default)
      ************************************************************/
-    const langBg = document.getElementById("langBg");
-    const langEn = document.getElementById("langEn");
+    const btnLangEn = document.getElementById("langEn");
+    const btnLangRu = document.getElementById("langRu");
+    const btnLangDe = document.getElementById("langDe");
+    const btnLangEs = document.getElementById("langEs");
 
     function setLang(lang){
       document.documentElement.lang = lang;
       localStorage.setItem("bzs_lang", lang);
-      langBg.classList.toggle("active", lang === "bg");
-      langEn.classList.toggle("active", lang === "en");
+
+      btnLangEn.classList.toggle("active", lang === "en");
+      btnLangRu.classList.toggle("active", lang === "ru");
+      btnLangDe.classList.toggle("active", lang === "de");
+      btnLangEs.classList.toggle("active", lang === "es");
     }
-    langBg.addEventListener("click", ()=> setLang("bg"));
-    langEn.addEventListener("click", ()=> setLang("en"));
-    setLang(localStorage.getItem("bzs_lang") || "bg");
+    btnLangEn.addEventListener("click", ()=> setLang("en"));
+    btnLangRu.addEventListener("click", ()=> setLang("ru"));
+    btnLangDe.addEventListener("click", ()=> setLang("de"));
+    btnLangEs.addEventListener("click", ()=> setLang("es"));
+
+    // EN is default if nothing stored:
+    setLang(localStorage.getItem("bzs_lang") || "en");
 
     /************************************************************
      * Init
@@ -898,37 +786,27 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     if (CONTRACT_ADDRESS.includes("0xc924a01D48c5c71cFf9977f04df1f8513939D884")){
-      contractDisplay.textContent = (document.documentElement.lang === "bg")
-        ? "0xc924a01D48c5c71cFf9977f04df1f8513939D884"
-        : "0xc924a01D48c5c71cFf9977f04df1f8513939D884";
-      btnEtherscan.href = "#"; btnEtherscan2.href = "#";
+      contractDisplay.textContent = msg("setContract");
+      btnEtherscan.href = "#";
       btnUniswap.href = "#";
     } else {
       contractDisplay.textContent = CONTRACT_ADDRESS;
       btnEtherscan.href = ETHERSCAN_URL;
-      btnEtherscan2.href = ETHERSCAN_URL;
       btnUniswap.href = UNISWAP_URL;
       etherscanFooter.href = ETHERSCAN_URL;
     }
 
-    btnDex.href = DEXSCREENER_URL;
     btnDexNav.href = DEXSCREENER_URL;
     dexFooter.href = DEXSCREENER_URL;
 
     if (COINMARKETCAP_URL && COINMARKETCAP_URL.startsWith("http")){
-      btnCmc.textContent = "Open CoinMarketCap";
-      btnCmc.classList.remove("btnGhost");
-      btnCmc.classList.add("btnPrimary");
-      btnCmc.href = COINMARKETCAP_URL;
       btnCmcNav.href = COINMARKETCAP_URL;
       cmcFooter.href = COINMARKETCAP_URL;
     } else {
-      btnCmc.href = "#";
       btnCmcNav.href = "#";
       cmcFooter.href = "#";
-      btnCmc.addEventListener("click", (e)=>{ e.preventDefault(); showToast(document.documentElement.lang === "bg" ? "CMC линк: скоро" : "CMC link: coming soon"); });
-      btnCmcNav.addEventListener("click", (e)=>{ e.preventDefault(); showToast(document.documentElement.lang === "bg" ? "CMC линк: скоро" : "CMC link: coming soon"); });
-      cmcFooter.addEventListener("click", (e)=>{ e.preventDefault(); showToast(document.documentElement.lang === "bg" ? "CMC линк: скоро" : "CMC link: coming soon"); });
+      btnCmcNav.addEventListener("click", (e)=>{ e.preventDefault(); showToast(msg("cmcSoon")); });
+      cmcFooter.addEventListener("click", (e)=>{ e.preventDefault(); showToast(msg("cmcSoon")); });
     }
 
     linkX.href = X_URL; linkTG.href = TG_URL; linkDiscord.href = DISCORD_URL;
@@ -937,7 +815,6 @@
     siteLink.href = SITE_URL;
 
     btnCopy.addEventListener("click", ()=> copyText(CONTRACT_ADDRESS));
-    btnCopy2.addEventListener("click", ()=> copyText(CONTRACT_ADDRESS));
 
     const modalBack = document.getElementById("modalBack");
     const btnWhitepaper = document.getElementById("btnWhitepaper");
@@ -949,20 +826,20 @@
     const btnConnect = document.getElementById("btnConnect");
     btnConnect.addEventListener("click", async ()=>{
       if (!window.ethereum){
-        showToast(document.documentElement.lang === "bg" ? "Няма MetaMask" : "MetaMask not found");
+        showToast(msg("noMM"));
         return;
       }
       try{
         const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
         const a = accounts?.[0] || "";
         btnConnect.innerHTML = "🦊 " + (a ? ("Connected: " + a.slice(0,6) + "…" + a.slice(-4)) : "Connected");
-        showToast(document.documentElement.lang === "bg" ? "Свързано ✅" : "Connected ✅");
+        showToast(msg("connected"));
       }catch(err){
-        showToast(document.documentElement.lang === "bg" ? "Отказано" : "Cancelled");
+        showToast(msg("cancelled"));
       }
     });
 
-    // Countdown (пример: 7 дни)
+    // Countdown (example: 7 days)
     const target = new Date(Date.now() + 7*24*60*60*1000);
     const cd = document.getElementById("countdown");
     function tick(){
@@ -975,19 +852,22 @@
       const m = Math.floor((s%3600)/60);
       const ss = s%60;
 
+      const lang = document.documentElement.lang || "en";
+      const labels = {
+        en: ["Days","Hours","Minutes","Sec"],
+        ru: ["Дни","Часы","Мин","Сек"],
+        de: ["Tage","Std","Min","Sek"],
+        es: ["Días","Horas","Min","Seg"]
+      }[lang] || ["Days","Hours","Minutes","Sec"];
+
       cd.innerHTML = `
-        <div class="countBox"><div class="n">${d}</div><div class="l">${document.documentElement.lang==="bg"?"Дни":"Days"}</div></div>
-        <div class="countBox"><div class="n">${h}</div><div class="l">${document.documentElement.lang==="bg"?"Часа":"Hours"}</div></div>
-        <div class="countBox"><div class="n">${m}</div><div class="l">${document.documentElement.lang==="bg"?"Минути":"Minutes"}</div></div>
-        <div class="countBox"><div class="n">${ss}</div><div class="l">${document.documentElement.lang==="bg"?"Сек":"Sec"}</div></div>
+        <div class="countBox"><div class="n">${d}</div><div class="l">${labels[0]}</div></div>
+        <div class="countBox"><div class="n">${h}</div><div class="l">${labels[1]}</div></div>
+        <div class="countBox"><div class="n">${m}</div><div class="l">${labels[2]}</div></div>
+        <div class="countBox"><div class="n">${ss}</div><div class="l">${labels[3]}</div></div>
       `;
     }
     tick(); setInterval(tick, 1000);
-
-    if (DEXSCREENER_EMBED_URL && DEXSCREENER_EMBED_URL.startsWith("http")){
-      const el = document.getElementById("dexEmbed");
-      el.innerHTML = `<iframe src="${DEXSCREENER_EMBED_URL}" loading="lazy" referrerpolicy="no-referrer"></iframe>`;
-    }
 
     // Particles (lightweight)
     const canvas = document.getElementById("particles");
@@ -1053,5 +933,3 @@
   </script>
 </body>
 </html>
-
-
